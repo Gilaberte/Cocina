@@ -21,6 +21,10 @@
             android:name=".SecondaryActivity"
             android:label="@string/title_activity_secondary" >
         </activity>
+        <activity
+            android:name=".AddRecetaActivity"
+            android:label="@string/title_activity_add_receta" >
+        </activity>
     </application>
 
 </manifest>

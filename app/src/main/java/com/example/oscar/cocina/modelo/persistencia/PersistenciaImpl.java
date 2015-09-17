@@ -14,8 +14,8 @@ public class PersistenciaImpl implements Persistencia {
 
     public PersistenciaImpl() {
 
-        addReceta("Huevo frito", "Huevos y sal", "Facil", "poner en sarten");
-        addReceta("Macarrones", "macarrones y tomate", "Facil", "Hervir y poner tomate");
+       // addReceta("Huevo frito", "Huevos y sal", "Facil", "poner en sarten");
+        //addReceta("Macarrones", "macarrones y tomate", "Facil", "Hervir y poner tomate");
 
     }
 
