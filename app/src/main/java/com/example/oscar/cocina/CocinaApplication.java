@@ -20,9 +20,7 @@ public class CocinaApplication extends Application {
     public void onCreate() {
         super.onCreate();
         Negocio negocio = new NegocioImpl(new DaoRecetaImpl(this), new DaoIngredienteImpl(this));
-
         this.servicio = new ServicioImpl(negocio);
-
     }
 
     public Servicio getServicio() {

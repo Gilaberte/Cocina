@@ -30,4 +30,9 @@ public class NegocioImpl implements Negocio {
     public ArrayAdapter getMedidasIngredientes() {
         return daoIngrediente.getMedidasIngredientes();
     }
+
+    @Override
+    public ArrayAdapter getCantidadesIngredientes() {
+        return daoIngrediente.getCantidadesIngredientes();
+    }
 }
