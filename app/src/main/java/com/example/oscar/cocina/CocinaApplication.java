@@ -4,7 +4,8 @@ import android.app.Application;
 
 import com.example.oscar.cocina.modelo.negocio.Negocio;
 import com.example.oscar.cocina.modelo.negocio.NegocioImpl;
-import com.example.oscar.cocina.modelo.persistencia.PersistenciaImpl;
+import com.example.oscar.cocina.modelo.persistencia.DaoIngredienteImpl;
+import com.example.oscar.cocina.modelo.persistencia.DaoRecetaImpl;
 import com.example.oscar.cocina.modelo.servicio.Servicio;
 import com.example.oscar.cocina.modelo.servicio.ServicioImpl;
 
@@ -18,7 +19,7 @@ public class CocinaApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        Negocio negocio = new NegocioImpl(new PersistenciaImpl());
+        Negocio negocio = new NegocioImpl(new DaoRecetaImpl(this), new DaoIngredienteImpl(this));
 
         this.servicio = new ServicioImpl(negocio);
 

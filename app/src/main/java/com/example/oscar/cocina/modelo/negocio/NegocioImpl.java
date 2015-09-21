@@ -1,7 +1,10 @@
 package com.example.oscar.cocina.modelo.negocio;
 
+import android.widget.ArrayAdapter;
+
 import com.example.oscar.cocina.modelo.entidades.Receta;
-import com.example.oscar.cocina.modelo.persistencia.Persistencia;
+import com.example.oscar.cocina.modelo.persistencia.DaoIngrediente;
+import com.example.oscar.cocina.modelo.persistencia.DaoReceta;
 
 import java.util.List;
 
@@ -10,14 +13,21 @@ import java.util.List;
  */
 public class NegocioImpl implements Negocio {
 
-    private Persistencia persistencia;
+    private DaoReceta daoReceta;
+    private DaoIngrediente daoIngrediente;
 
-    public NegocioImpl(Persistencia persistencia) {
+    public NegocioImpl(DaoReceta daoReceta, DaoIngrediente daoIngrediente) {
 
-        this.persistencia = persistencia;
+        this.daoReceta = daoReceta;
+        this.daoIngrediente = daoIngrediente;
     }
     @Override
     public List<Receta> getRecetas() {
-        return persistencia.getRecetas();
+        return daoReceta.getRecetas();
+    }
+
+    @Override
+    public ArrayAdapter getMedidasIngredientes() {
+        return daoIngrediente.getMedidasIngredientes();
     }
 }

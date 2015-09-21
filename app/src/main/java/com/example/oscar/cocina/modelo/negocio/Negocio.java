@@ -1,7 +1,8 @@
 package com.example.oscar.cocina.modelo.negocio;
 
+import android.widget.ArrayAdapter;
+
 import com.example.oscar.cocina.modelo.entidades.Receta;
-import com.example.oscar.cocina.modelo.persistencia.Persistencia;
 
 import java.util.List;
 
@@ -13,4 +14,6 @@ public interface Negocio {
 
 
     List<Receta> getRecetas();
+
+    ArrayAdapter getMedidasIngredientes();
 }

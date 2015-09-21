@@ -8,9 +8,12 @@
     <string name="title_activity_add_receta">AddRecetaActivity</string>
     <string name="receta_name">Nombre de mi receta</string>
 
-    <string-array name="receta_cantidades">
-        <item>KG</item>
-        <item>G</item>
+    <string-array name="receta_medidas">
+        <item>kg</item>
+        <item>g</item>
+        <item>l</item>
 
     </string-array>
+    <string name="title_activity_add_ingrediente">AddIngredienteActivity</string>
+    <string name="tvIngredienteName">Nombre Ingrediente</string>
 </resources>

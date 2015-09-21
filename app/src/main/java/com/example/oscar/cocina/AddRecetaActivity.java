@@ -1,26 +1,64 @@
 package com.example.oscar.cocina;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
+
+import com.example.oscar.cocina.modelo.entidades.Ingrediente;
 
 public class AddRecetaActivity extends Activity {
 
-    Spinner spinnerAddRecetaCantidades;
+    private Spinner spinnerAddRecetaCantidades;
+
+    private CocinaApplication context;
+
+    private View btAddIngrediente;
+
+    private EditText etNombreIngrediente;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_receta);
 
-        spinnerAddRecetaCantidades = (Spinner) findViewById(R.id.spinnerAddRecetaCantidades);
+        context = (CocinaApplication) getApplicationContext();
 
-        //ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>();
-        //spinnerAddRecetaCantidades.setAdapter(arrayAdapter);
+        btAddIngrediente = findViewById(R.id.btAddIngrediente);
+
+        etNombreIngrediente = (EditText) findViewById(R.id.etIngredienteName);
+
+        btAddIngrediente.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+            }
+        });
+
+
+
+        //INGREDIENTES
+        spinnerAddRecetaCantidades = (Spinner) findViewById(R.id.spinnerAddRecetaMedidas);
+
+        context = (CocinaApplication) getApplicationContext();
+
+        ArrayAdapter medidasAdapter = context.getServicio().getMedidasIngredientes();
+
+        spinnerAddRecetaCantidades.setAdapter(medidasAdapter);
+
+
+
+    }
+
+    private void startActivityForResult(Intent intent) {
     }
 
     @Override
