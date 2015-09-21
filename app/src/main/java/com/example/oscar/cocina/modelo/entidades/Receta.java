@@ -8,11 +8,11 @@ import java.util.ArrayList;
 public class Receta {
 
     private String nombre;
-    private String ingredientes;
+    private Ingrediente ingredientes;
     private String dificultad;
     private String preparacion;
 
-    public Receta(String nombre, String ingredientes, String dificultad, String preparacion) {
+    public Receta(String nombre, Ingrediente ingredientes, String dificultad, String preparacion) {
 
         this.nombre = nombre;
         this.ingredientes = ingredientes;
@@ -28,11 +28,11 @@ public class Receta {
         this.nombre = nombre;
     }
 
-    public String getIngredientes() {
+    public Ingrediente getIngredientes() {
         return ingredientes;
     }
 
-    public void setIngredientes(String ingredientes) {
+    public void setIngredientes(Ingrediente ingredientes) {
         this.ingredientes = ingredientes;
     }
 
