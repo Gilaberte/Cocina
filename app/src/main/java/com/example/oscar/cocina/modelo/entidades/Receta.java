@@ -1,6 +1,7 @@
 package com.example.oscar.cocina.modelo.entidades;
 
 import java.util.ArrayList;
+import java.util.Collection;
 
 /**
  * Created by oscar on 15/09/2015.
@@ -8,16 +9,13 @@ import java.util.ArrayList;
 public class Receta {
 
     private String nombre;
-    private String ingredientes;
+    private ArrayList<Ingrediente> ingredientes = new ArrayList<Ingrediente>();
     private String dificultad;
     private String preparacion;
 
-    public Receta(String nombre, String ingredientes, String dificultad, String preparacion) {
+    public Receta() {
+        super();
 
-        this.nombre = nombre;
-        this.ingredientes = ingredientes;
-        this.dificultad = dificultad;
-        this.preparacion = preparacion;
     }
 
     public String getNombre() {
@@ -28,12 +26,15 @@ public class Receta {
         this.nombre = nombre;
     }
 
-    public String getIngredientes() {
+    public Collection<Ingrediente> getIngredientes() {
         return ingredientes;
     }
 
-    public void setIngredientes(String ingredientes) {
+    public void setIngredientes(ArrayList<Ingrediente> ingredientes) {
         this.ingredientes = ingredientes;
+    }
+    public void setIngrediente(Ingrediente ingrediente) {
+        this.ingredientes.add(ingrediente);
     }
 
     public String getDificultad() {
