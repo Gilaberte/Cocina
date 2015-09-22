@@ -74,16 +74,12 @@ public class MainActivity extends Activity {
 
         if (requestCode == REQUEST_CODE_ADD_RECETA) {
 
-            //El resultado es de secondary
+            //El resultado es de add receta
             if (resultCode == RESULT_OK) {
 
                 String resultado = data.getStringExtra(AddRecetaActivity.RESULTADO_ADD_RECETA);
 
                 recetaAdapter.notifyDataSetChanged();
-
-                //Toast.makeText(this, resultado, Toast.LENGTH_LONG).show();
-
-
             }
 
         }

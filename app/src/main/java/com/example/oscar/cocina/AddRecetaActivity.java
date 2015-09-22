@@ -132,9 +132,6 @@ public class AddRecetaActivity extends Activity {
             context.getServicio().addReceta(receta);
 
             Intent intent = new Intent();
-
-            intent.putExtra(RESULTADO_ADD_RECETA, "ESTE ES TU RESULTADO");
-
             setResult(RESULT_OK, intent);
             finish();
         }
