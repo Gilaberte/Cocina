@@ -19,8 +19,6 @@ public class DaoRecetaImpl implements DaoReceta {
 
     private List<Receta> recetas = new ArrayList<>();
 
-    private ArrayAdapter medidasRecetaAdapter;
-
     public DaoRecetaImpl(CocinaApplication context) {
 
         this.context = context;
@@ -36,9 +34,9 @@ public class DaoRecetaImpl implements DaoReceta {
         return recetas;
     }
 
-    public void addReceta(String nombre, ArrayList<Ingrediente> ingredientes, String dificultad, String preparacion){
+    public void addReceta(Receta receta){
 
-        recetas.add(new Receta());
+        recetas.add(receta);
 
     }
 

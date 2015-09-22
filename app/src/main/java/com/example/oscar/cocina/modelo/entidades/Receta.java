@@ -33,7 +33,7 @@ public class Receta {
     public void setIngredientes(ArrayList<Ingrediente> ingredientes) {
         this.ingredientes = ingredientes;
     }
-    public void setIngrediente(Ingrediente ingrediente) {
+    public void addIngrediente(Ingrediente ingrediente) {
         this.ingredientes.add(ingrediente);
     }
 

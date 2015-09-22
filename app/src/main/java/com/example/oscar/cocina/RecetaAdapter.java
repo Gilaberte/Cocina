@@ -52,11 +52,9 @@ public class RecetaAdapter extends BaseAdapter {
             convertView = layoutInflater.inflate(layout, null);
 
             TextView tvNombre = (TextView) convertView.findViewById(R.id.tvNombre);
-            TextView tvIngredientes = (TextView) convertView.findViewById(R.id.tvIngredientes);
             TextView tvDificultad = (TextView) convertView.findViewById(R.id.tvDificultad);
-            TextView tvPreparacion = (TextView) convertView.findViewById(R.id.tvPreparacion);
 
-            RecetaAdapterDecorator recetaAdapterDecorator = new RecetaAdapterDecorator(tvNombre, tvIngredientes, tvDificultad, tvPreparacion);
+            RecetaAdapterDecorator recetaAdapterDecorator = new RecetaAdapterDecorator(tvNombre, tvDificultad);
 
             convertView.setTag(recetaAdapterDecorator);
         }
@@ -65,8 +63,8 @@ public class RecetaAdapter extends BaseAdapter {
 
         ((RecetaAdapterDecorator) convertView.getTag()).tvNombre.setText(item.getNombre());
         //((RecetaAdapterDecorator) convertView.getTag()).tvIngredientes.setText(item.getIngredientes());
-        ((RecetaAdapterDecorator) convertView.getTag()).tvDificultad.setText(item.getDificultad());
-        ((RecetaAdapterDecorator) convertView.getTag()).tvPreparacion.setText(item.getPreparacion());
+        //((RecetaAdapterDecorator) convertView.getTag()).tvDificultad.setText(item.getDificultad());
+        //((RecetaAdapterDecorator) convertView.getTag()).tvPreparacion.setText(item.getPreparacion());
 
 
         return convertView;
@@ -81,11 +79,9 @@ public class RecetaAdapter extends BaseAdapter {
         public TextView tvDificultad;
         public TextView tvPreparacion;
 
-        public RecetaAdapterDecorator(TextView tvNombre, TextView tvIngredientes, TextView tvDificultad, TextView tvPreparacion) {
+        public RecetaAdapterDecorator(TextView tvNombre, TextView tvDificultad) {
             this.tvNombre = tvNombre;
-            this.tvIngredientes = tvIngredientes;
             this.tvDificultad = tvDificultad;
-            this.tvPreparacion = tvPreparacion;
         }
     }
 }

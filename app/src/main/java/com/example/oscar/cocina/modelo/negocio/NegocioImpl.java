@@ -27,12 +27,9 @@ public class NegocioImpl implements Negocio {
     }
 
     @Override
-    public ArrayAdapter getMedidasIngredientes() {
-        return daoIngrediente.getMedidasIngredientes();
+    public void addReceta(Receta receta) {
+        daoReceta.addReceta(receta);
     }
 
-    @Override
-    public ArrayAdapter getCantidadesIngredientes() {
-        return daoIngrediente.getCantidadesIngredientes();
-    }
+
 }

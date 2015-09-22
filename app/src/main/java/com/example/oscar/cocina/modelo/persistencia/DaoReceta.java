@@ -18,7 +18,7 @@ public interface DaoReceta {
 
     List<Receta> getRecetas();
 
-    void addReceta(String nombre, ArrayList<Ingrediente> ingredientes, String dificultad, String preparacion);
+    void addReceta(Receta receta);
 
 
 

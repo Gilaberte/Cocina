@@ -15,6 +15,5 @@ public interface Negocio {
 
     List<Receta> getRecetas();
 
-    ArrayAdapter getMedidasIngredientes();
-    ArrayAdapter getCantidadesIngredientes();
+    void addReceta(Receta receta);
 }

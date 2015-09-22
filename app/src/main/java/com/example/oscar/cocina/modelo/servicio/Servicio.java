@@ -14,9 +14,7 @@ public interface Servicio {
 
     List<Receta> getRecetas();
 
-    ArrayAdapter getMedidasIngredientes();
-
-    ArrayAdapter getCantidadesIngredientes();
+    public void addReceta(Receta receta);
 
 
 

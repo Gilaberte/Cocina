@@ -7,6 +7,5 @@ import android.widget.ArrayAdapter;
  */
 public interface DaoIngrediente {
 
-    ArrayAdapter getMedidasIngredientes();
-    ArrayAdapter getCantidadesIngredientes();
+
 }

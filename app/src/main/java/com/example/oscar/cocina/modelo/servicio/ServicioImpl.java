@@ -26,13 +26,8 @@ public class ServicioImpl implements Servicio {
     }
 
     @Override
-    public ArrayAdapter getMedidasIngredientes() {
-        return negocio.getMedidasIngredientes();
-    }
-
-    @Override
-    public ArrayAdapter getCantidadesIngredientes() {
-        return negocio.getCantidadesIngredientes();
+    public void addReceta(Receta receta) {
+        negocio.addReceta(receta);
     }
 
 

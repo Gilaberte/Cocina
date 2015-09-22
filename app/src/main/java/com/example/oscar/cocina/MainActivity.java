@@ -1,12 +1,10 @@
 package com.example.oscar.cocina;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -18,56 +16,31 @@ import java.util.List;
 
 public class MainActivity extends Activity {
 
-    ListView listado;
-    Button btCambiarActivity;
+    private static final int REQUEST_CODE_ADD_RECETA = 1;
+    private ListView listadoRecetas;
+    private RecetaAdapter recetaAdapter;
+    private Button btCambiarActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        this.listado = (ListView) findViewById(R.id.lvRecetas);
+        this.listadoRecetas = (ListView) findViewById(R.id.lvRecetas);
 
         CocinaApplication context = (CocinaApplication) getApplicationContext();
 
         Servicio servicio = context.getServicio();
 
         List<Receta> recetas = servicio.getRecetas();
-
+        int layout = R.layout.recetas_list_item;
+        recetaAdapter = new RecetaAdapter(recetas, this, layout);
+        listadoRecetas.setAdapter(recetaAdapter);
         if( recetas.size() < 1 ){
 
             Toast.makeText(this, "No se han encontrado recetas", Toast.LENGTH_SHORT).show();
 
-        }else{
-
-            int layout = R.layout.recetas_list_item;
-            RecetaAdapter recetaAdapter = new RecetaAdapter(recetas, this, layout);
-            listado.setAdapter(recetaAdapter);
         }
-
-
-
-
-
-
-
-        //ONCLICK PARA PASAR A OTRO ACTIVITY
-        /*this.btCambiarActivity = (Button) findViewById(R.id.btCambiarPantalla);
-
-        this.btCambiarActivity.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Intent intent = new Intent(v.getContext(), SecondaryActivity.class);
-
-                intent.putExtra("dato", "DATO PASADO DE LA PRIMERA ACTIVITY A ESTA");
-
-                startActivity(intent);
-
-
-            }
-        });*/
-
 
     }
 
@@ -88,13 +61,31 @@ public class MainActivity extends Activity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.add_receta) {
             Intent intent = new Intent(MainActivity.this, AddRecetaActivity.class);
-            startActivity(intent);
+            startActivityForResult(intent, REQUEST_CODE_ADD_RECETA);
         }
 
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
 
 
+        if (requestCode == REQUEST_CODE_ADD_RECETA) {
 
+            //El resultado es de secondary
+            if (resultCode == RESULT_OK) {
+
+                String resultado = data.getStringExtra(AddRecetaActivity.RESULTADO_ADD_RECETA);
+
+                recetaAdapter.notifyDataSetChanged();
+
+                //Toast.makeText(this, resultado, Toast.LENGTH_LONG).show();
+
+
+            }
+
+        }
+    }
 }

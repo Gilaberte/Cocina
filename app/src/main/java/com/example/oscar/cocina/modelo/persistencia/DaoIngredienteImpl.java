@@ -5,6 +5,7 @@ import android.widget.ArrayAdapter;
 
 import com.example.oscar.cocina.CocinaApplication;
 import com.example.oscar.cocina.R;
+import com.example.oscar.cocina.modelo.entidades.Ingrediente;
 import com.example.oscar.cocina.modelo.entidades.Receta;
 
 import java.util.ArrayList;
@@ -17,29 +18,18 @@ public class DaoIngredienteImpl implements DaoIngrediente {
 
     private CocinaApplication context;
 
-    private ArrayAdapter medidasRecetaAdapter;
-
-    private ArrayAdapter cantidadesRecetaAdapter;
-
+    private Ingrediente ingrediente;
 
     public DaoIngredienteImpl(CocinaApplication context) {
         this.context = context;
     }
 
-    @Override
-    public ArrayAdapter getMedidasIngredientes() {
 
-        Resources res = context.getResources();
-        medidasRecetaAdapter = new ArrayAdapter<String>(context, android.R.layout.simple_spinner_item, res.getStringArray(R.array.receta_medidas));
-
-        return medidasRecetaAdapter;
+    public Ingrediente getIngrediente() {
+        return ingrediente;
     }
 
-    @Override
-    public ArrayAdapter getCantidadesIngredientes() {
-        Resources res = context.getResources();
-        cantidadesRecetaAdapter = new ArrayAdapter<String>(context, android.R.layout.simple_spinner_item, res.getStringArray(R.array.receta_cantidades));
-
-        return cantidadesRecetaAdapter;
+    public void setIngrediente(Ingrediente ingrediente) {
+        this.ingrediente = ingrediente;
     }
 }
