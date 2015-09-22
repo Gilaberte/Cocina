@@ -5,4 +5,20 @@
         <!-- Customize your theme here. -->
     </style>
 
+
+    <style name="MiTema" parent="android:Theme.Holo.Light.DarkActionBar">
+        <!-- START CUSTOM -->
+
+        <!-- END CUSTOM -->
+
+    </style>
+
+    <!-- Text view general -->
+    <style name="textView_General">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">#000</item>
+        <item name="android:typeface">monospace</item>
+    </style>
+
 </resources>
