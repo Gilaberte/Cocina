@@ -19,6 +19,8 @@ public class DaoIngredienteImpl implements DaoIngrediente {
 
     private ArrayAdapter medidasRecetaAdapter;
 
+    private ArrayAdapter cantidadesRecetaAdapter;
+
 
     public DaoIngredienteImpl(CocinaApplication context) {
         this.context = context;
@@ -31,5 +33,13 @@ public class DaoIngredienteImpl implements DaoIngrediente {
         medidasRecetaAdapter = new ArrayAdapter<String>(context, android.R.layout.simple_spinner_item, res.getStringArray(R.array.receta_medidas));
 
         return medidasRecetaAdapter;
+    }
+
+    @Override
+    public ArrayAdapter getCantidadesIngredientes() {
+        Resources res = context.getResources();
+        cantidadesRecetaAdapter = new ArrayAdapter<String>(context, android.R.layout.simple_spinner_item, res.getStringArray(R.array.receta_cantidades));
+
+        return cantidadesRecetaAdapter;
     }
 }

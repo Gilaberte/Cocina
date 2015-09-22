@@ -6,6 +6,7 @@ import com.example.oscar.cocina.modelo.entidades.Ingrediente;
 import com.example.oscar.cocina.modelo.entidades.Receta;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -17,7 +18,7 @@ public interface DaoReceta {
 
     List<Receta> getRecetas();
 
-    void addReceta(String nombre, Ingrediente ingredientes, String dificultad, String preparacion);
+    void addReceta(String nombre, ArrayList<Ingrediente> ingredientes, String dificultad, String preparacion);
 
 
 
