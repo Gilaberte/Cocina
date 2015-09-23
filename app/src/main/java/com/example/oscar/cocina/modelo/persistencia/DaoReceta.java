@@ -18,7 +18,9 @@ public interface DaoReceta {
 
     List<Receta> getRecetas();
 
-    void addReceta(Receta receta);
+    Receta getRecetaById(int id);
+
+    int addReceta(Receta receta);
 
 
 

@@ -34,9 +34,15 @@ public class DaoRecetaImpl implements DaoReceta {
         return recetas;
     }
 
-    public void addReceta(Receta receta){
+    @Override
+    public Receta getRecetaById(int id) {
+        return recetas.get(id);
+    }
+
+    public int addReceta(Receta receta){
 
         recetas.add(receta);
+        return recetas.indexOf(receta);
 
     }
 

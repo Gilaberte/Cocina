@@ -26,8 +26,13 @@ public class ServicioImpl implements Servicio {
     }
 
     @Override
-    public void addReceta(Receta receta) {
-        negocio.addReceta(receta);
+    public int addReceta(Receta receta) {
+        return negocio.addReceta(receta);
+    }
+
+    @Override
+    public Receta getRecetaById(int id) {
+        return negocio.getRecetaById(id);
     }
 
 

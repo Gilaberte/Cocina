@@ -27,8 +27,13 @@ public class NegocioImpl implements Negocio {
     }
 
     @Override
-    public void addReceta(Receta receta) {
-        daoReceta.addReceta(receta);
+    public int addReceta(Receta receta) {
+        return daoReceta.addReceta(receta);
+    }
+
+    @Override
+    public Receta getRecetaById(int id) {
+        return daoReceta.getRecetaById(id);
     }
 
 

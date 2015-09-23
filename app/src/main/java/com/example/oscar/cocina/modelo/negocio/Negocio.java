@@ -15,5 +15,7 @@ public interface Negocio {
 
     List<Receta> getRecetas();
 
-    void addReceta(Receta receta);
+    int addReceta(Receta receta);
+
+    Receta getRecetaById(int id);
 }
