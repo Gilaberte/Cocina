@@ -33,9 +33,6 @@ public class Receta {
     public void setIngredientes(ArrayList<Ingrediente> ingredientes) {
         this.ingredientes = ingredientes;
     }
-    public void addIngrediente(Ingrediente ingrediente) {
-        this.ingredientes.add(ingrediente);
-    }
 
     public String getDificultad() {
         return dificultad;
@@ -51,5 +48,19 @@ public class Receta {
 
     public void setPreparacion(String preparacion) {
         this.preparacion = preparacion;
+    }
+
+
+    public void addIngrediente(Ingrediente ingrediente) {
+        this.ingredientes.add(ingrediente);
+    }
+
+    public void removeIngrediente(int position) {
+        this.ingredientes.remove(position);
+    }
+
+
+    public Ingrediente getIngredienteById(int position) {
+        return ingredientes.get(position);
     }
 }

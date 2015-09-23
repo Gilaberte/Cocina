@@ -41,4 +41,5 @@
     <string name="title_activity_add_ingrediente">AddIngredienteActivity</string>
     <string name="tvIngredienteName">¿Que ingredientes vas a usar?</string>
     <string name="tv_receta_dificultad">Nivel de dificultad</string>
+    <string name="tvRecetaPreparacion">¿Como lo vas a hacer?</string>
 </resources>

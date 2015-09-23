@@ -3,9 +3,11 @@ package com.example.oscar.cocina;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListAdapter;
@@ -33,6 +35,8 @@ public class AddRecetaActivity extends Activity {
     private CocinaApplication context;
     private Receta receta;
 
+
+    private IngredienteAdapter ingredienteAdapter;
     private ArrayAdapter dificultadRecetaAdapter;
     private ArrayAdapter medidasIngredienteAdapter;
     private ArrayAdapter cantidadesIngredienteAdapter;
@@ -82,8 +86,11 @@ public class AddRecetaActivity extends Activity {
         //Obtenemos ingredientes y los listamos
         ArrayList<Ingrediente> ingredientes = receta.getIngredientes();
         int layout = R.layout.ingredientes_list_item;
-        IngredienteAdapter ingredienteAdapter = new IngredienteAdapter(ingredientes, context, layout);
+        ingredienteAdapter = new IngredienteAdapter(ingredientes, context, layout);
         listadoRecetaIngredientes.setAdapter(ingredienteAdapter);
+
+        //Registramos el listado de ignredientes para que aparezca el menu contextual
+        registerForContextMenu(listadoRecetaIngredientes);
 
         //Si hacemos click a añadir ingrediente...
 
@@ -115,6 +122,8 @@ public class AddRecetaActivity extends Activity {
             }
         });
 
+
+
     }
 
     @Override
@@ -145,5 +154,46 @@ public class AddRecetaActivity extends Activity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+
+        if( v.getId() == R.id.lvRecetaIngredientes ){
+
+            int position = ((AdapterView.AdapterContextMenuInfo) menuInfo).position;
+
+            Ingrediente item = receta.getIngredienteById(position);
+
+            menu.setHeaderTitle(item.getNombre());
+
+            getMenuInflater().inflate(R.menu.menu_ingrediente_context, menu);
+
+        }
+
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+
+        int position = ((AdapterView.AdapterContextMenuInfo) item.getMenuInfo()).position;
+
+        switch (item.getItemId()) {
+            case R.id.action_edicion:
+
+                return true;
+            case R.id.action_borrar:
+
+                receta.removeIngrediente(position);
+
+                ingredienteAdapter.notifyDataSetChanged();
+                return true;
+            case R.id.action_info:
+                //Abrir una nueva actividad que permita visualizar, pero no modificar
+                return true;
+            default:
+                return super.onContextItemSelected(item);
+        }
     }
 }

@@ -84,6 +84,13 @@
         android:layout_height="wrap_content"
         android:id="@+id/lvRecetaIngredientes" />
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/tvRecetaPreparacion"
+        android:gravity="center"/>
+
+
     <EditText
         android:id="@+id/et_receta_preparacion"
         android:inputType="textMultiLine"
