@@ -22,21 +22,20 @@ public class AddRecetaActivity extends Activity {
     public static final String RESULTADO_ADD_RECETA = "resultadoAddReceta";
     private Spinner spinnerAddIngredienteCantidades;
     private Spinner spinnerAddIngredienteMedidas;
+    private Spinner spinnerRecetaDificultad;
 
-    private ArrayAdapter medidasIngredienteAdapter;
-    private ArrayAdapter cantidadesIngredienteAdapter;
+    private EditText etRecetaPreparacion;
+    private EditText etNombreReceta;
+    private EditText etNombreIngrediente;
+    private ListView listadoRecetaIngredientes;
+    private View btAddIngrediente;
 
     private CocinaApplication context;
-
     private Receta receta;
 
-    private EditText etNombreReceta;
-
-    private EditText etNombreIngrediente;
-
-    private ListView listadoRecetaIngredientes;
-
-    private View btAddIngrediente;
+    private ArrayAdapter dificultadRecetaAdapter;
+    private ArrayAdapter medidasIngredienteAdapter;
+    private ArrayAdapter cantidadesIngredienteAdapter;
 
 
 
@@ -47,22 +46,30 @@ public class AddRecetaActivity extends Activity {
         //Obtenemos contexto
         context = (CocinaApplication) getApplicationContext();
 
+        //Creamos nuevo objeto Receta NO CAMBIAR DE SITIO PORQUE DA ERROR AL INTENTAR OBTENER LOS INGREDIENTES
+        receta = new Receta();
+
         //Iniciamos adapters
-        medidasIngredienteAdapter = new ArrayAdapter<String>(context, android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.receta_medidas));
-        cantidadesIngredienteAdapter = new ArrayAdapter<String>(context, android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.receta_cantidades));
+        dificultadRecetaAdapter = new ArrayAdapter<String>(context, R.layout.simple_spinner_item, getResources().getStringArray(R.array.receta_dificultad));
+        medidasIngredienteAdapter = new ArrayAdapter<String>(context, R.layout.simple_spinner_item, getResources().getStringArray(R.array.receta_medidas));
+        cantidadesIngredienteAdapter = new ArrayAdapter<String>(context, R.layout.simple_spinner_item, getResources().getStringArray(R.array.receta_cantidades));
 
         //Referencia al listadoRecetas donde almacenaremos el listadoRecetas de ingredientes
         listadoRecetaIngredientes = (ListView) findViewById(R.id.lvRecetaIngredientes);
-
-        //Creamos nuevo objeto Receta
-        receta = new Receta();
 
         //Nombre Receta
         etNombreReceta = (EditText) findViewById(R.id.etRecetaName);
 
         //Nombre Ingrediente
         etNombreIngrediente = (EditText) findViewById(R.id.etIngredienteName);
-        
+
+        //Preparacion
+        etRecetaPreparacion = (EditText) findViewById(R.id.et_receta_preparacion);
+
+        //DIFICULTAD
+        spinnerRecetaDificultad = (Spinner) findViewById(R.id.spinnerAddRecetaDificultad);
+        spinnerRecetaDificultad.setAdapter(dificultadRecetaAdapter);
+
         //MEDIDAS INGREDIENTES
         spinnerAddIngredienteMedidas = (Spinner) findViewById(R.id.spinnerAddRecetaMedidas);
         spinnerAddIngredienteMedidas.setAdapter(medidasIngredienteAdapter);
@@ -73,12 +80,13 @@ public class AddRecetaActivity extends Activity {
 
 
         //Obtenemos ingredientes y los listamos
-        ArrayList<Ingrediente> ingredientes = (ArrayList<Ingrediente>) receta.getIngredientes();
+        ArrayList<Ingrediente> ingredientes = receta.getIngredientes();
         int layout = R.layout.ingredientes_list_item;
         IngredienteAdapter ingredienteAdapter = new IngredienteAdapter(ingredientes, context, layout);
         listadoRecetaIngredientes.setAdapter(ingredienteAdapter);
 
         //Si hacemos click a añadir ingrediente...
+
         btAddIngrediente = findViewById(R.id.btAddIngrediente);
         btAddIngrediente.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -127,8 +135,8 @@ public class AddRecetaActivity extends Activity {
         if (id == R.id.guardar_receta) {
 
             receta.setNombre(etNombreReceta.getText().toString());
-            receta.setDificultad("FACIL");
-            receta.setPreparacion("asi asa");
+            receta.setDificultad(spinnerRecetaDificultad.getSelectedItem().toString());
+            receta.setPreparacion(etRecetaPreparacion.getText().toString());
             context.getServicio().addReceta(receta);
 
             Intent intent = new Intent();

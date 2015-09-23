@@ -26,7 +26,7 @@ public class Receta {
         this.nombre = nombre;
     }
 
-    public Collection<Ingrediente> getIngredientes() {
+    public ArrayList<Ingrediente> getIngredientes() {
         return ingredientes;
     }
 

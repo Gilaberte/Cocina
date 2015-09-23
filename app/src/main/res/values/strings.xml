@@ -6,12 +6,24 @@
     <string name="title_activity_secondary">SecondaryActivity</string>
     <string name="title_activity_activity_a">activity_a</string>
     <string name="title_activity_add_receta">AddRecetaActivity</string>
-    <string name="receta_name">Nombre de mi receta</string>
+    <string name="receta_name">¿Que te apetece cocinar?</string>
+
+    <string-array name="receta_dificultad">
+
+        <item>Fácil</item>
+        <item>Medio</item>
+        <item>Dificil</item>
+
+    </string-array>
 
     <string-array name="receta_medidas">
         <item>kg</item>
         <item>g</item>
         <item>l</item>
+        <item>ml</item>
+        <item>onza</item>
+        <item>cucharada</item>
+        <item>vaso</item>
 
     </string-array>
 
@@ -27,5 +39,6 @@
 
     </string-array>
     <string name="title_activity_add_ingrediente">AddIngredienteActivity</string>
-    <string name="tvIngredienteName">Nombre Ingrediente</string>
+    <string name="tvIngredienteName">¿Que ingredientes vas a usar?</string>
+    <string name="tv_receta_dificultad">Nivel de dificultad</string>
 </resources>
