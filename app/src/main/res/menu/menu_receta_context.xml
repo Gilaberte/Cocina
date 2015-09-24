@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:id="@+id/action_ingrediente_edicion" android:title="Editar"
+    <item android:id="@+id/action_receta_edicion" android:title="Editar"
         android:orderInCategory="100" android:showAsAction="never" />
-    <item android:id="@+id/action_ingrediente_borrar" android:title="Borrar"
+    <item android:id="@+id/action_receta_borrar" android:title="Borrar"
         android:orderInCategory="200" android:showAsAction="never" />
+
 
 </menu>

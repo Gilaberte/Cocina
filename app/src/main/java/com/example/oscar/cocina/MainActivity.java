@@ -3,8 +3,11 @@ package com.example.oscar.cocina;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -15,6 +18,8 @@ import com.example.oscar.cocina.modelo.servicio.Servicio;
 import java.util.List;
 
 public class MainActivity extends Activity {
+
+    private CocinaApplication context;
 
     private static final int REQUEST_CODE_ADD_RECETA = 1;
     private ListView listadoRecetas;
@@ -28,7 +33,7 @@ public class MainActivity extends Activity {
 
         this.listadoRecetas = (ListView) findViewById(R.id.lvRecetas);
 
-        CocinaApplication context = (CocinaApplication) getApplicationContext();
+        context = (CocinaApplication) getApplicationContext();
 
         Servicio servicio = context.getServicio();
 
@@ -41,6 +46,10 @@ public class MainActivity extends Activity {
             Toast.makeText(this, "No se han encontrado recetas", Toast.LENGTH_SHORT).show();
 
         }
+
+
+        //Registramos el listado de ignredientes para que aparezca el menu contextual
+        registerForContextMenu(listadoRecetas);
 
     }
 
@@ -83,5 +92,26 @@ public class MainActivity extends Activity {
             }
 
         }
+    }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+
+        if( v.getId() == R.id.lvRecetas ){
+
+            int position = ((AdapterView.AdapterContextMenuInfo) menuInfo).position;
+
+            Receta receta = context.getServicio().getRecetaById(position);
+            menu.setHeaderTitle(receta.getNombre());
+
+            getMenuInflater().inflate(R.menu.menu_receta_context, menu);
+
+        }
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        return super.onContextItemSelected(item);
     }
 }

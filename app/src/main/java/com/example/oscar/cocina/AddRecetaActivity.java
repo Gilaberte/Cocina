@@ -10,7 +10,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
 
@@ -114,8 +113,11 @@ public class AddRecetaActivity extends Activity {
                 receta.addIngrediente(ingrediente);
 
                 //Notificamos al adapter que actualice su contenido en el listadoRecetas de ingredientes
-                IngredienteAdapter adapterTmp = (IngredienteAdapter) listadoRecetaIngredientes.getAdapter();
-                adapterTmp.notifyDataSetChanged();
+                ingredienteAdapter.notifyDataSetChanged();
+
+                etNombreIngrediente.setText("");
+                spinnerAddIngredienteCantidades.setSelection(0);
+                spinnerAddIngredienteMedidas.setSelection(0);
                 //Toast.makeText(context, itemIngredienteCantidad, Toast.LENGTH_LONG).show();
 
 
@@ -180,18 +182,22 @@ public class AddRecetaActivity extends Activity {
         int position = ((AdapterView.AdapterContextMenuInfo) item.getMenuInfo()).position;
 
         switch (item.getItemId()) {
-            case R.id.action_edicion:
+            case R.id.action_ingrediente_edicion:
+
+                EditIngredienteFragment editIngredienteFragment = new EditIngredienteFragment();
+                editIngredienteFragment.setIngrediente(receta.getIngredienteById(position));
+                editIngredienteFragment.setIngredienteAdapter(ingredienteAdapter);
+                editIngredienteFragment.show(getFragmentManager(), "EditIngredienteFragment");
+
 
                 return true;
-            case R.id.action_borrar:
+            case R.id.action_ingrediente_borrar:
 
                 receta.removeIngrediente(position);
 
                 ingredienteAdapter.notifyDataSetChanged();
                 return true;
-            case R.id.action_info:
-                //Abrir una nueva actividad que permita visualizar, pero no modificar
-                return true;
+
             default:
                 return super.onContextItemSelected(item);
         }

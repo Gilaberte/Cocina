@@ -63,7 +63,7 @@ public class RecetaAdapter extends BaseAdapter {
 
         ((RecetaAdapterDecorator) convertView.getTag()).tvNombre.setText(item.getNombre());
         //((RecetaAdapterDecorator) convertView.getTag()).tvIngredientes.setText(item.getIngredientes());
-        //((RecetaAdapterDecorator) convertView.getTag()).tvDificultad.setText(item.getDificultad());
+        ((RecetaAdapterDecorator) convertView.getTag()).tvDificultad.setText(item.getDificultad());
         //((RecetaAdapterDecorator) convertView.getTag()).tvPreparacion.setText(item.getPreparacion());
 
 
