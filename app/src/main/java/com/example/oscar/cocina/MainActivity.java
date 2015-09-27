@@ -112,6 +112,30 @@ public class MainActivity extends Activity {
 
     @Override
     public boolean onContextItemSelected(MenuItem item) {
-        return super.onContextItemSelected(item);
+        int position = ((AdapterView.AdapterContextMenuInfo) item.getMenuInfo()).position;
+
+        switch (item.getItemId()) {
+            case R.id.action_receta_edicion:
+
+                Intent intent = new Intent(this, EditRecetaActivity.class);
+
+                intent.putExtra("receta", context.getServicio().getRecetaById(position));
+
+                startActivity(intent);
+
+
+                return true;
+            case R.id.action_receta_borrar:
+
+                Receta receta = context.getServicio().getRecetaById(position);
+                context.getServicio().removeReceta(receta);
+
+                recetaAdapter.notifyDataSetChanged();
+
+                return true;
+
+            default:
+                return super.onContextItemSelected(item);
+        }
     }
 }

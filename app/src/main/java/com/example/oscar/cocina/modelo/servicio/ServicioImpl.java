@@ -35,5 +35,10 @@ public class ServicioImpl implements Servicio {
         return negocio.getRecetaById(id);
     }
 
+    @Override
+    public void removeReceta(Receta receta) {
+        negocio.removeReceta(receta);
+    }
+
 
 }

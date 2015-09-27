@@ -36,5 +36,10 @@ public class NegocioImpl implements Negocio {
         return daoReceta.getRecetaById(id);
     }
 
+    @Override
+    public void removeReceta(Receta receta) {
+        daoReceta.removeReceta(receta);
+    }
+
 
 }

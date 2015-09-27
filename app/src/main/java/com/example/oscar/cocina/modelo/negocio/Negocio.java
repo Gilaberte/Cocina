@@ -18,4 +18,6 @@ public interface Negocio {
     int addReceta(Receta receta);
 
     Receta getRecetaById(int id);
+
+    void removeReceta(Receta receta);
 }

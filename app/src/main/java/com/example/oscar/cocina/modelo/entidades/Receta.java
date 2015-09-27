@@ -1,12 +1,13 @@
 package com.example.oscar.cocina.modelo.entidades;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 
 /**
  * Created by oscar on 15/09/2015.
  */
-public class Receta {
+public class Receta implements Serializable {
 
     private String nombre;
     private ArrayList<Ingrediente> ingredientes = new ArrayList<Ingrediente>();

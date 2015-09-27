@@ -18,6 +18,8 @@ public interface Servicio {
 
     public Receta getRecetaById(int id);
 
+    public void removeReceta(Receta receta);
+
 
 
 

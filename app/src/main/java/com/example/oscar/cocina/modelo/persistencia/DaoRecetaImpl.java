@@ -46,5 +46,10 @@ public class DaoRecetaImpl implements DaoReceta {
 
     }
 
+    @Override
+    public void removeReceta(Receta receta) {
+        recetas.remove(receta);
+    }
+
 
 }
