@@ -109,8 +109,9 @@ public class MainActivity extends Activity {
 
                 Receta recetaSelected = (Receta) recetaAdapter.getItem(position);
                 intent.putExtra("receta", recetaSelected);
+                intent.putExtra("position", position);
 
-                startActivity(intent);
+                startActivityForResult(intent, REQUEST_CODE_ADD_RECETA);
 
 
                 return true;

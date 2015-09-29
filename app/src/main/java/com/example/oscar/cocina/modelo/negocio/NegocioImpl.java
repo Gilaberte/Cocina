@@ -1,7 +1,5 @@
 package com.example.oscar.cocina.modelo.negocio;
 
-import android.widget.ArrayAdapter;
-
 import com.example.oscar.cocina.modelo.entidades.Receta;
 import com.example.oscar.cocina.modelo.persistencia.DaoIngrediente;
 import com.example.oscar.cocina.modelo.persistencia.DaoReceta;
@@ -39,6 +37,11 @@ public class NegocioImpl implements Negocio {
     @Override
     public void removeReceta(Receta receta) {
         daoReceta.removeReceta(receta);
+    }
+
+    @Override
+    public void updateReceta(Receta receta, int position) {
+        daoReceta.updateReceta(receta, position);
     }
 
 

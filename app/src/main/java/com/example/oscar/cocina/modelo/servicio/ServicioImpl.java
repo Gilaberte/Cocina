@@ -1,8 +1,5 @@
 package com.example.oscar.cocina.modelo.servicio;
 
-import android.widget.ArrayAdapter;
-
-import com.example.oscar.cocina.modelo.entidades.Ingrediente;
 import com.example.oscar.cocina.modelo.entidades.Receta;
 import com.example.oscar.cocina.modelo.negocio.Negocio;
 
@@ -38,6 +35,11 @@ public class ServicioImpl implements Servicio {
     @Override
     public void removeReceta(Receta receta) {
         negocio.removeReceta(receta);
+    }
+
+    @Override
+    public void updateReceta(Receta receta, int position) {
+        negocio.updateReceta(receta, position);
     }
 
 

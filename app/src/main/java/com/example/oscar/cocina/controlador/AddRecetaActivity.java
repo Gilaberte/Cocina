@@ -45,6 +45,9 @@ public class AddRecetaActivity extends Activity {
     private ArrayAdapter medidasIngredienteAdapter;
     private ArrayAdapter cantidadesIngredienteAdapter;
 
+    //Si es null estamos añadiendo, si no editando
+    private Serializable recetaSelected;
+    private int position;
 
 
     @Override
@@ -88,11 +91,12 @@ public class AddRecetaActivity extends Activity {
 
 
         Intent intent = getIntent();
-        Serializable recetaSelected = intent.getSerializableExtra("receta");
+        recetaSelected = intent.getSerializableExtra("receta");
 
         if( recetaSelected != null ){
 
             this.receta = (Receta) recetaSelected;
+            this.position = intent.getIntExtra("position", 0);
             setCurrentReceta();
 
         }else{
@@ -170,7 +174,14 @@ public class AddRecetaActivity extends Activity {
             receta.setNombre(etNombreReceta.getText().toString());
             receta.setDificultad(spinnerRecetaDificultad.getSelectedItem().toString());
             receta.setPreparacion(etRecetaPreparacion.getText().toString());
-            context.getServicio().addReceta(receta);
+            if( recetaSelected != null ){
+
+                context.getServicio().updateReceta(receta, this.position);
+            }else{
+                context.getServicio().addReceta(receta);
+
+            }
+
 
             Intent intent = new Intent();
             setResult(RESULT_OK, intent);
@@ -230,18 +241,10 @@ public class AddRecetaActivity extends Activity {
 
         etNombreReceta.setText(receta.getNombre());
         String[] dificultad = getResources().getStringArray(R.array.receta_dificultad);
-
-        int indexDificultad = 0;
         String valueDificultad = receta.getDificultad();
 
-        for ( int i = 0; i < dificultad.length; i++ ){
 
-            if( dificultad[i] ==  valueDificultad){
-
-                indexDificultad = i;
-
-            }
-        }
+        etRecetaPreparacion.setText(receta.getPreparacion());
 
         spinnerRecetaDificultad.setSelection(Arrays.binarySearch(dificultad, valueDificultad));
         dificultadRecetaAdapter.notifyDataSetChanged();

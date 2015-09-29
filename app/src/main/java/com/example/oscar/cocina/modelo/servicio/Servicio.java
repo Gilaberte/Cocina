@@ -21,6 +21,5 @@ public interface Servicio {
     public void removeReceta(Receta receta);
 
 
-
-
+    public void updateReceta(Receta receta, int position);
 }

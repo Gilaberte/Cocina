@@ -25,5 +25,5 @@ public interface DaoReceta {
     void removeReceta(Receta receta);
 
 
-
+    void updateReceta(Receta receta, int position);
 }

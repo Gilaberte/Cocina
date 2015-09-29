@@ -1,13 +1,9 @@
 package com.example.oscar.cocina.modelo.persistencia;
 
-import android.widget.ArrayAdapter;
-
 import com.example.oscar.cocina.CocinaApplication;
-import com.example.oscar.cocina.modelo.entidades.Ingrediente;
 import com.example.oscar.cocina.modelo.entidades.Receta;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 /**
@@ -49,6 +45,11 @@ public class DaoRecetaImpl implements DaoReceta {
     @Override
     public void removeReceta(Receta receta) {
         recetas.remove(receta);
+    }
+
+    @Override
+    public void updateReceta(Receta receta, int position) {
+        recetas.set(position, receta);
     }
 
 
