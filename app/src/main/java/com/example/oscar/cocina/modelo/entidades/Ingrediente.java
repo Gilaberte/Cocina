@@ -1,9 +1,11 @@
 package com.example.oscar.cocina.modelo.entidades;
 
+import java.io.Serializable;
+
 /**
  * Created by manana on 21/09/15.
  */
-public class Ingrediente {
+public class Ingrediente implements Serializable{
 
     private String nombre;
     private String medida;
