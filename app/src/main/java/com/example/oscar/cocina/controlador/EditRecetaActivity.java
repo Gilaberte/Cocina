@@ -1,9 +1,11 @@
-package com.example.oscar.cocina;
+package com.example.oscar.cocina.controlador;
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import com.example.oscar.cocina.R;
 
 public class EditRecetaActivity extends Activity {
 

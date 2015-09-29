@@ -1,4 +1,4 @@
-package com.example.oscar.cocina;
+package com.example.oscar.cocina.vista;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -8,6 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.oscar.cocina.R;
 import com.example.oscar.cocina.modelo.entidades.Receta;
 
 import java.util.List;

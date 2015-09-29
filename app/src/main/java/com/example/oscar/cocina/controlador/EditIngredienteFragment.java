@@ -1,4 +1,4 @@
-package com.example.oscar.cocina;
+package com.example.oscar.cocina.controlador;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -9,10 +9,10 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.Toast;
 
+import com.example.oscar.cocina.vista.IngredienteAdapter;
+import com.example.oscar.cocina.R;
 import com.example.oscar.cocina.modelo.entidades.Ingrediente;
-import com.example.oscar.cocina.modelo.entidades.Receta;
 
 /**
  * Created by manana on 24/09/15.

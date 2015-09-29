@@ -1,6 +1,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.example.oscar.cocina.AddRecetaActivity">
+    tools:context="com.example.oscar.cocina.controlador.AddRecetaActivity">
     <item android:id="@+id/guardar_receta"
         android:title="Guardar"
         android:orderInCategory="100"

@@ -1,4 +1,4 @@
-package com.example.oscar.cocina;
+package com.example.oscar.cocina.controlador;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -13,10 +13,15 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
 
+import com.example.oscar.cocina.CocinaApplication;
+import com.example.oscar.cocina.vista.IngredienteAdapter;
+import com.example.oscar.cocina.R;
 import com.example.oscar.cocina.modelo.entidades.Ingrediente;
 import com.example.oscar.cocina.modelo.entidades.Receta;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class AddRecetaActivity extends Activity {
 
@@ -49,8 +54,7 @@ public class AddRecetaActivity extends Activity {
         //Obtenemos contexto
         context = (CocinaApplication) getApplicationContext();
 
-        //Creamos nuevo objeto Receta NO CAMBIAR DE SITIO PORQUE DA ERROR AL INTENTAR OBTENER LOS INGREDIENTES
-        receta = new Receta();
+
 
         //Iniciamos adapters
         dificultadRecetaAdapter = new ArrayAdapter<String>(context, R.layout.simple_spinner_item, getResources().getStringArray(R.array.receta_dificultad));
@@ -82,8 +86,26 @@ public class AddRecetaActivity extends Activity {
         spinnerAddIngredienteCantidades.setAdapter(cantidadesIngredienteAdapter);
 
 
+
+        Intent intent = getIntent();
+        Serializable recetaSelected = intent.getSerializableExtra("receta");
+
+        if( recetaSelected != null ){
+
+            this.receta = (Receta) recetaSelected;
+            setCurrentReceta();
+
+        }else{
+
+            //Creamos nuevo objeto Receta NO CAMBIAR DE SITIO PORQUE DA ERROR AL INTENTAR OBTENER LOS INGREDIENTES
+            this.receta = new Receta();
+        }
+
+
+
+
         //Obtenemos ingredientes y los listamos
-        ArrayList<Ingrediente> ingredientes = receta.getIngredientes();
+        ArrayList<Ingrediente> ingredientes = this.receta.getIngredientes();
         int layout = R.layout.ingredientes_list_item;
         ingredienteAdapter = new IngredienteAdapter(ingredientes, context, layout);
         listadoRecetaIngredientes.setAdapter(ingredienteAdapter);
@@ -110,7 +132,7 @@ public class AddRecetaActivity extends Activity {
                 ingrediente.setMedida(itemIngredienteMedida);
 
                 //Añadimos ese nuevo objeto ingrediente a nuestro objeto receta.
-                receta.addIngrediente(ingrediente);
+                AddRecetaActivity.this.receta.addIngrediente(ingrediente);
 
                 //Notificamos al adapter que actualice su contenido en el listadoRecetas de ingredientes
                 ingredienteAdapter.notifyDataSetChanged();
@@ -201,5 +223,30 @@ public class AddRecetaActivity extends Activity {
             default:
                 return super.onContextItemSelected(item);
         }
+    }
+
+    private void setCurrentReceta(){
+
+
+        etNombreReceta.setText(receta.getNombre());
+        String[] dificultad = getResources().getStringArray(R.array.receta_dificultad);
+
+        int indexDificultad = 0;
+        String valueDificultad = receta.getDificultad();
+
+        for ( int i = 0; i < dificultad.length; i++ ){
+
+            if( dificultad[i] ==  valueDificultad){
+
+                indexDificultad = i;
+
+            }
+        }
+
+        spinnerRecetaDificultad.setSelection(Arrays.binarySearch(dificultad, valueDificultad));
+        dificultadRecetaAdapter.notifyDataSetChanged();
+
+
+
     }
 }

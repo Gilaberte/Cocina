@@ -18,15 +18,11 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".SecondaryActivity"
-            android:label="@string/title_activity_secondary" >
-        </activity>
-        <activity
-            android:name=".AddRecetaActivity"
+            android:name=".controlador.AddRecetaActivity"
             android:label="@string/title_activity_add_receta" >
         </activity>
         <activity
-            android:name=".EditRecetaActivity"
+            android:name=".controlador.EditRecetaActivity"
             android:label="@string/title_activity_edit_receta" >
         </activity>
     </application>

@@ -12,9 +12,13 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.oscar.cocina.controlador.AddRecetaActivity;
+import com.example.oscar.cocina.controlador.EditRecetaActivity;
 import com.example.oscar.cocina.modelo.entidades.Receta;
 import com.example.oscar.cocina.modelo.servicio.Servicio;
+import com.example.oscar.cocina.vista.RecetaAdapter;
 
+import java.io.Serializable;
 import java.util.List;
 
 public class MainActivity extends Activity {
@@ -22,6 +26,7 @@ public class MainActivity extends Activity {
     private CocinaApplication context;
 
     private static final int REQUEST_CODE_ADD_RECETA = 1;
+    private static final int REQUEST_CODE_EDIT_RECETA = 2;
     private ListView listadoRecetas;
     private RecetaAdapter recetaAdapter;
     private Button btCambiarActivity;
@@ -70,28 +75,11 @@ public class MainActivity extends Activity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.add_receta) {
             Intent intent = new Intent(MainActivity.this, AddRecetaActivity.class);
+            intent.putExtra("receta", ((Serializable)null));
             startActivityForResult(intent, REQUEST_CODE_ADD_RECETA);
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-
-        if (requestCode == REQUEST_CODE_ADD_RECETA) {
-
-            //El resultado es de add receta
-            if (resultCode == RESULT_OK) {
-
-                String resultado = data.getStringExtra(AddRecetaActivity.RESULTADO_ADD_RECETA);
-
-                recetaAdapter.notifyDataSetChanged();
-            }
-
-        }
     }
 
     @Override
@@ -117,9 +105,10 @@ public class MainActivity extends Activity {
         switch (item.getItemId()) {
             case R.id.action_receta_edicion:
 
-                Intent intent = new Intent(this, EditRecetaActivity.class);
+                Intent intent = new Intent(MainActivity.this, AddRecetaActivity.class);
 
-                intent.putExtra("receta", context.getServicio().getRecetaById(position));
+                Receta recetaSelected = (Receta) recetaAdapter.getItem(position);
+                intent.putExtra("receta", recetaSelected);
 
                 startActivity(intent);
 
@@ -136,6 +125,26 @@ public class MainActivity extends Activity {
 
             default:
                 return super.onContextItemSelected(item);
+        }
+    }
+
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+
+        if (requestCode == REQUEST_CODE_ADD_RECETA) {
+
+            //El resultado es de add receta
+            if (resultCode == RESULT_OK) {
+
+                String resultado = data.getStringExtra(AddRecetaActivity.RESULTADO_ADD_RECETA);
+
+                recetaAdapter.notifyDataSetChanged();
+            }
+
         }
     }
 }
