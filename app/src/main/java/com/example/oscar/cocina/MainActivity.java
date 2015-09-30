@@ -143,6 +143,9 @@ public class MainActivity extends Activity {
 
                 String resultado = data.getStringExtra(AddRecetaActivity.RESULTADO_ADD_RECETA);
 
+
+
+                recetaAdapter.addAll(context.getServicio().getRecetas());
                 recetaAdapter.notifyDataSetChanged();
             }
 

@@ -4,7 +4,6 @@
     android:layout_height="match_parent">
 
     <TextView
-        style="@style/textView_General"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text=""
@@ -15,7 +14,6 @@
 
 
     <TextView
-        style="@style/textView_General"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text=""
@@ -24,7 +22,6 @@
         android:layout_column="1" />
 
     <TextView
-        style="@style/textView_General"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text=""

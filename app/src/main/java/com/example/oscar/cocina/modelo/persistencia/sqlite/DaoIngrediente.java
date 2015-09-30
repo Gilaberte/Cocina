@@ -1,4 +1,4 @@
-package com.example.oscar.cocina.modelo.persistencia;
+package com.example.oscar.cocina.modelo.persistencia.sqlite;
 
 import android.widget.ArrayAdapter;
 

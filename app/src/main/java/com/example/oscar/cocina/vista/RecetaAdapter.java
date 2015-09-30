@@ -71,6 +71,10 @@ public class RecetaAdapter extends BaseAdapter {
         return convertView;
     }
 
+    public void addAll(List<Receta> listado){
+        datos.clear();
+        datos.addAll(listado);
+    }
 
     private class RecetaAdapterDecorator{
 

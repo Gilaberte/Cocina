@@ -1,8 +1,8 @@
 package com.example.oscar.cocina.modelo.negocio;
 
 import com.example.oscar.cocina.modelo.entidades.Receta;
-import com.example.oscar.cocina.modelo.persistencia.DaoIngrediente;
-import com.example.oscar.cocina.modelo.persistencia.DaoReceta;
+import com.example.oscar.cocina.modelo.persistencia.sqlite.DaoIngrediente;
+import com.example.oscar.cocina.modelo.persistencia.sqlite.DaoReceta;
 
 import java.util.List;
 

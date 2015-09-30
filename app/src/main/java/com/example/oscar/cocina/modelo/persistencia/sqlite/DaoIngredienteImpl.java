@@ -1,27 +1,23 @@
-package com.example.oscar.cocina.modelo.persistencia;
+package com.example.oscar.cocina.modelo.persistencia.sqlite;
 
-import android.content.res.Resources;
-import android.widget.ArrayAdapter;
+import android.database.sqlite.SQLiteDatabase;
 
 import com.example.oscar.cocina.CocinaApplication;
-import com.example.oscar.cocina.R;
 import com.example.oscar.cocina.modelo.entidades.Ingrediente;
-import com.example.oscar.cocina.modelo.entidades.Receta;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by manana on 21/09/15.
  */
 public class DaoIngredienteImpl implements DaoIngrediente {
 
+    private SQLiteDatabase db;
     private CocinaApplication context;
 
     private Ingrediente ingrediente;
 
-    public DaoIngredienteImpl(CocinaApplication context) {
+    public DaoIngredienteImpl(CocinaApplication context, SQLiteDatabase db) {
         this.context = context;
+        this.db = db;
     }
 
 

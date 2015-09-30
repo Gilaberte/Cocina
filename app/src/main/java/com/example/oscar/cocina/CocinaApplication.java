@@ -1,11 +1,13 @@
 package com.example.oscar.cocina;
 
 import android.app.Application;
+import android.database.sqlite.SQLiteDatabase;
 
 import com.example.oscar.cocina.modelo.negocio.Negocio;
 import com.example.oscar.cocina.modelo.negocio.NegocioImpl;
-import com.example.oscar.cocina.modelo.persistencia.DaoIngredienteImpl;
-import com.example.oscar.cocina.modelo.persistencia.DaoRecetaImpl;
+import com.example.oscar.cocina.modelo.persistencia.sqlite.DaoIngredienteImpl;
+import com.example.oscar.cocina.modelo.persistencia.sqlite.DaoRecetaImpl;
+import com.example.oscar.cocina.modelo.persistencia.sqlite.util.RecetaSqliteOpenHelper;
 import com.example.oscar.cocina.modelo.servicio.Servicio;
 import com.example.oscar.cocina.modelo.servicio.ServicioImpl;
 
@@ -19,7 +21,13 @@ public class CocinaApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        Negocio negocio = new NegocioImpl(new DaoRecetaImpl(this), new DaoIngredienteImpl(this));
+
+        RecetaSqliteOpenHelper sqliteOpenHelper =
+                new RecetaSqliteOpenHelper(this, "Recetadb", null, 1);
+
+        SQLiteDatabase db = sqliteOpenHelper.getWritableDatabase();
+
+        Negocio negocio = new NegocioImpl(new DaoRecetaImpl(this, db), new DaoIngredienteImpl(this, db));
         this.servicio = new ServicioImpl(negocio);
     }
 

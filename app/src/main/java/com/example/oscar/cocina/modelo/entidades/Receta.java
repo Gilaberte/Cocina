@@ -9,6 +9,7 @@ import java.util.Collection;
  */
 public class Receta implements Serializable {
 
+    private long id;
     private String nombre;
     private ArrayList<Ingrediente> ingredientes = new ArrayList<Ingrediente>();
     private String dificultad;
@@ -17,6 +18,14 @@ public class Receta implements Serializable {
     public Receta() {
         super();
 
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getNombre() {

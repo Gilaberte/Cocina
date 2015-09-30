@@ -7,14 +7,13 @@
 
 
     <style name="MiTema" parent="android:Theme.Holo.Light.DarkActionBar">
-        <item name="android:textViewStyle">@style/textView_General</item>
+        <item name="android:textViewStyle">@style/color_General</item>
 
+        <item name="android:spinnerItemStyle">@style/color_General</item>
     </style>
 
     <!-- Text view general -->
-    <style name="textView_General">
-        <item name="android:layout_width">fill_parent</item>
-        <item name="android:layout_height">fill_parent</item>
+    <style name="color_General">
         <item name="android:textColor">#000</item>
     </style>
 

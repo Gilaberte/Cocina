@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="createReceta">CREATE TABLE Receta (
+            id	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+            nombre	TEXT NOT NULL,
+            dificultad	TEXT NOT NULL,
+            preparacion	TEXT NOT NULL
+        )</string>
+
+    <string name="createIngrediente">CREATE TABLE Ingrediente (
+            id	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+            nombre TEXT NOT NULL
+        )
+
+    </string>
+
+    <string name="createRecetaIngrediente">CREATE TABLE RecetaIngrediente (
+            idReceta	INTEGER NOT NULL,
+            idIngrediente	INTEGER NOT NULL,
+            PRIMARY KEY(idReceta,idIngrediente),
+            FOREIGN KEY(idReceta) REFERENCES Receta(id),
+            FOREIGN KEY(idIngrediente) REFERENCES Ingrediente(id)
+        )
+
+    </string>
+
+    <string-array name="scriptCreacion">
+        <item>@string/createReceta</item>
+        <item>@string/createIngrediente</item>
+        <item>@string/createRecetaIngrediente</item>
+    </string-array>
+    
+</resources>
