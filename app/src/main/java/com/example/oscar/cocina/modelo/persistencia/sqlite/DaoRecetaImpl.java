@@ -5,9 +5,9 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.example.oscar.cocina.CocinaApplication;
+import com.example.oscar.cocina.modelo.entidades.Ingrediente;
 import com.example.oscar.cocina.modelo.entidades.Receta;
 
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -22,6 +22,10 @@ public class DaoRecetaImpl implements DaoReceta {
     public static final String RECETA_CAMPO_NOMBRE = "nombre";
     public static final String RECETA_CAMPO_DIFICULTAD = "dificultad";
     public static final String RECETA_CAMPO_PREPARACION = "preparacion";
+
+    public static final String TABLA_RECETA_INGREDIENTE = "RecetaIngrediente";
+    public static final String RECETA_INGREDIENTE_CAMPO_IDRECETA = "idReceta";
+    public static final String RECETA_INGREDIENTE_CAMPO_IDINGREDIENTE = "idIngrediente";
 
 
     private SQLiteDatabase db;
@@ -66,14 +70,10 @@ public class DaoRecetaImpl implements DaoReceta {
 
 
     @Override
-    public int addReceta(Receta receta){
+    public void addReceta(Receta receta){
 
-        /*recetas.add(receta);
-        return recetas.indexOf(receta);*/
-
-        long idAutogenerado = db.insert(TABLA_RECETA, RECETA_CAMPO_ID, noticiaToContentValues(receta));
+        long idAutogenerado = db.insert(TABLA_RECETA, RECETA_CAMPO_ID, recetaToContentValues(receta));
         receta.setId(idAutogenerado);
-        return (int)idAutogenerado;
 
     }
 
@@ -94,15 +94,32 @@ public class DaoRecetaImpl implements DaoReceta {
         String whereClause = RECETA_CAMPO_ID + " = ?";
         String[] whereArgs = {String.valueOf(receta.getId())};
 
-        db.update(TABLA_RECETA, noticiaToContentValues(receta), whereClause, whereArgs);
+        db.update(TABLA_RECETA, recetaToContentValues(receta), whereClause, whereArgs);
+    }
+
+    @Override
+    public void addIngredienteReceta(long idReceta, long idIngrediente) {
+
+        ContentValues ingredienteContentValues = new ContentValues();
+        ingredienteContentValues.put(RECETA_INGREDIENTE_CAMPO_IDRECETA, idReceta);
+        ingredienteContentValues.put(RECETA_INGREDIENTE_CAMPO_IDINGREDIENTE, idIngrediente);
+
+        db.insert(TABLA_RECETA_INGREDIENTE, null, ingredienteContentValues);
+
+
+
+    }
+
+    @Override
+    public ArrayList<Ingrediente> getIngredientesReceta(long id) {
+
+        return null;
+
     }
 
 
-
-    private ContentValues noticiaToContentValues(Receta entidad) {
+    private ContentValues recetaToContentValues(Receta entidad) {
         ContentValues recetaContentValues = new ContentValues();
-
-
         recetaContentValues.put(RECETA_CAMPO_NOMBRE,entidad.getNombre());
         recetaContentValues.put(RECETA_CAMPO_DIFICULTAD,entidad.getDificultad());
         recetaContentValues.put(RECETA_CAMPO_PREPARACION, entidad.getPreparacion());

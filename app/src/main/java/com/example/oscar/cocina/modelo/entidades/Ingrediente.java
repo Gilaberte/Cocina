@@ -7,9 +7,18 @@ import java.io.Serializable;
  */
 public class Ingrediente implements Serializable{
 
+    private long id;
     private String nombre;
     private String medida;
     private String cantidad;
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 
     public String getNombre() {
         return nombre;

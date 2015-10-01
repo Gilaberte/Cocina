@@ -1,9 +1,11 @@
 package com.example.oscar.cocina.modelo.negocio;
 
+import com.example.oscar.cocina.modelo.entidades.Ingrediente;
 import com.example.oscar.cocina.modelo.entidades.Receta;
 import com.example.oscar.cocina.modelo.persistencia.sqlite.DaoIngrediente;
 import com.example.oscar.cocina.modelo.persistencia.sqlite.DaoReceta;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,12 +23,31 @@ public class NegocioImpl implements Negocio {
     }
     @Override
     public List<Receta> getRecetas() {
-        return daoReceta.getRecetas();
+
+        List<Receta> recetas= daoReceta.getRecetas();
+        for (Receta receta: recetas) {
+            receta.setIngredientes(daoReceta.getIngredientesReceta(receta.getId()));
+        }
+
+        return recetas;
     }
 
     @Override
-    public int addReceta(Receta receta) {
-        return daoReceta.addReceta(receta);
+    public void addReceta(Receta receta) {
+
+        daoReceta.addReceta(receta);
+        long idReceta = receta.getId();
+        List<Ingrediente> ingredientes = receta.getIngredientes();
+
+        for (Ingrediente ingrediente: ingredientes) {
+
+            long idIngrediente = daoIngrediente.createIngrediente(ingrediente);
+            daoReceta.addIngredienteReceta(idReceta, idIngrediente);
+        }
+
+
+
+
     }
 
     @Override
