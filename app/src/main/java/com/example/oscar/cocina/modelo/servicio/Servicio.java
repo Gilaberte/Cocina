@@ -22,4 +22,6 @@ public interface Servicio {
     public void removeReceta(Receta receta);
 
     public ArrayList<Ingrediente> getIngredientesToReceta(long id);
+
+    void removeIngrediente(long idReceta, long idIngrediente);
 }

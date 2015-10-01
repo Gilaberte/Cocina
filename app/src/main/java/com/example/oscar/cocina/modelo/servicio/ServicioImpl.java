@@ -44,5 +44,10 @@ public class ServicioImpl implements Servicio {
         return negocio.getIngredientesToReceta(id);
     }
 
+    @Override
+    public void removeIngrediente(long idReceta, long idIngrediente) {
+        negocio.removeIngrediente(idReceta, idIngrediente);
+    }
+
 
 }

@@ -7,6 +7,8 @@ import android.database.sqlite.SQLiteDatabase;
 import com.example.oscar.cocina.CocinaApplication;
 import com.example.oscar.cocina.modelo.entidades.Ingrediente;
 
+import java.util.ArrayList;
+
 /**
  * Created by manana on 21/09/15.
  */
@@ -59,6 +61,26 @@ public class DaoIngredienteImpl implements DaoIngrediente {
         return null;
     }
 
+
+    @Override
+    public ArrayList<Ingrediente> getIngredientesToReceta(long id) {
+
+        Cursor cursor = db.rawQuery("SELECT Ingrediente.id, Ingrediente.nombre FROM Ingrediente, RecetaIngrediente " +
+                "WHERE RecetaIngrediente.idReceta = " + id, null);
+
+        ArrayList<Ingrediente> ingredientes = new ArrayList<>();
+        if(cursor.moveToFirst()) {
+
+            while (cursor.moveToNext()) {
+                ingredientes.add(cursorToIngrediente(cursor));
+            }
+
+
+        }
+
+        return ingredientes;
+
+    }
 
     private Ingrediente cursorToIngrediente(Cursor cursor) {
         Ingrediente ingrediente = new Ingrediente();

@@ -28,7 +28,7 @@ public interface DaoReceta {
 
     void addIngredienteReceta(long idReceta, long idIngrediente);
 
-    ArrayList<Ingrediente> getIngredientesToReceta(long id);
+    void removeIngredientes(Receta receta);
 
-    Boolean existIngredienteInReceta(long idReceta, long idIngrediente);
+    void removeIngredienteToReceta(long idReceta, long idIngrediente);
 }

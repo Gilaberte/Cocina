@@ -73,6 +73,11 @@ public class IngredienteAdapter extends BaseAdapter {
     }
 
 
+        public void addAll(List<Ingrediente> listado){
+        datos.clear();
+        datos.addAll(listado);
+    }
+
     private class IngredienteAdapterDecorator{
 
 

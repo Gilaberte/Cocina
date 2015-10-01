@@ -116,24 +116,20 @@ public class DaoRecetaImpl implements DaoReceta {
     }
 
     @Override
-    public ArrayList<Ingrediente> getIngredientesToReceta(long id) {
+    public void removeIngredientes(Receta receta) {
 
-        return null;
+        String whereClause = RECETA_INGREDIENTE_CAMPO_IDRECETA + " = ?";
+        String[] whereArgs = {String.valueOf(receta.getId())};
 
+        db.delete(TABLA_RECETA_INGREDIENTE, whereClause, whereArgs);
     }
 
     @Override
-    public Boolean existIngredienteInReceta(long idReceta, long idIngrediente) {
-        String whereClause = RECETA_INGREDIENTE_CAMPO_IDRECETA + " = ? AND "+ RECETA_INGREDIENTE_CAMPO_IDINGREDIENTE + " = ?";
+    public void removeIngredienteToReceta(long idReceta, long idIngrediente) {
+        String whereClause = RECETA_INGREDIENTE_CAMPO_IDRECETA + " = ? AND " + RECETA_INGREDIENTE_CAMPO_IDINGREDIENTE + " = ?" ;
         String[] whereArgs = {String.valueOf(idReceta), String.valueOf(idIngrediente)};
 
-        Cursor cursor = db.query(TABLA_RECETA_INGREDIENTE, null, whereClause, whereArgs, null, null, null);
-
-        if(cursor.moveToFirst()) {
-            return true;
-        }
-
-        return false;
+        db.delete(TABLA_RECETA_INGREDIENTE, whereClause, whereArgs);
     }
 
 

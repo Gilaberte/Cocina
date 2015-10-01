@@ -97,6 +97,7 @@ public class AddRecetaActivity extends Activity {
 
             this.receta = (Receta) recetaSelected;
             //TODO TENGO QUE OBTENER LOS INGREDIENTES
+            this.receta.setIngredientes(context.getServicio().getIngredientesToReceta(this.receta.getId()));
             setCurrentReceta();
 
         }else{
@@ -108,9 +109,8 @@ public class AddRecetaActivity extends Activity {
 
 
         //Obtenemos ingredientes y los listamos
-        ArrayList<Ingrediente> ingredientes = this.receta.getIngredientes();
         int layout = R.layout.ingredientes_list_item;
-        ingredienteAdapter = new IngredienteAdapter(ingredientes, context, layout);
+        ingredienteAdapter = new IngredienteAdapter(this.receta.getIngredientes(), context, layout);
         listadoRecetaIngredientes.setAdapter(ingredienteAdapter);
 
         //Registramos el listado de ignredientes para que aparezca el menu contextual
@@ -222,8 +222,11 @@ public class AddRecetaActivity extends Activity {
                 return true;
             case R.id.action_ingrediente_borrar:
 
-                receta.removeIngrediente(position);
 
+                context.getServicio().removeIngrediente(receta.getId(), ingredienteAdapter.getItemId(position));
+
+
+                ingredienteAdapter.addAll(context.getServicio().getIngredientesToReceta(receta.getId()));
                 ingredienteAdapter.notifyDataSetChanged();
                 return true;
 

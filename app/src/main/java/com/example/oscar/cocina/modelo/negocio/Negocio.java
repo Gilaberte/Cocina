@@ -24,4 +24,6 @@ public interface Negocio {
     void removeReceta(Receta receta);
 
     ArrayList<Ingrediente> getIngredientesToReceta(long id);
+
+    void removeIngrediente(long idReceta, long idIngrediente);
 }
