@@ -2,8 +2,10 @@ package com.example.oscar.cocina.modelo.negocio;
 
 import android.widget.ArrayAdapter;
 
+import com.example.oscar.cocina.modelo.entidades.Ingrediente;
 import com.example.oscar.cocina.modelo.entidades.Receta;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,5 +23,5 @@ public interface Negocio {
 
     void removeReceta(Receta receta);
 
-    void updateReceta(Receta receta, int position);
+    ArrayList<Ingrediente> getIngredientesToReceta(long id);
 }

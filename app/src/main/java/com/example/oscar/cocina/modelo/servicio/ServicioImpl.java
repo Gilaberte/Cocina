@@ -1,8 +1,10 @@
 package com.example.oscar.cocina.modelo.servicio;
 
+import com.example.oscar.cocina.modelo.entidades.Ingrediente;
 import com.example.oscar.cocina.modelo.entidades.Receta;
 import com.example.oscar.cocina.modelo.negocio.Negocio;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -38,8 +40,8 @@ public class ServicioImpl implements Servicio {
     }
 
     @Override
-    public void updateReceta(Receta receta, int position) {
-        negocio.updateReceta(receta, position);
+    public ArrayList<Ingrediente> getIngredientesToReceta(long id) {
+        return negocio.getIngredientesToReceta(id);
     }
 
 

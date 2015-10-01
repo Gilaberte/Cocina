@@ -5,6 +5,7 @@ import android.widget.ArrayAdapter;
 import com.example.oscar.cocina.modelo.entidades.Ingrediente;
 import com.example.oscar.cocina.modelo.entidades.Receta;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -20,6 +21,5 @@ public interface Servicio {
 
     public void removeReceta(Receta receta);
 
-
-    public void updateReceta(Receta receta, int position);
+    public ArrayList<Ingrediente> getIngredientesToReceta(long id);
 }

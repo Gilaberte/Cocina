@@ -20,13 +20,15 @@ public interface DaoReceta {
 
     Receta getRecetaById(int id);
 
-    void addReceta(Receta receta);
+    Receta addReceta(Receta receta);
 
     void removeReceta(Receta receta);
 
-    void updateReceta(Receta receta, int position);
+    Receta updateReceta(Receta receta);
 
     void addIngredienteReceta(long idReceta, long idIngrediente);
 
-    ArrayList<Ingrediente> getIngredientesReceta(long id);
+    ArrayList<Ingrediente> getIngredientesToReceta(long id);
+
+    Boolean existIngredienteInReceta(long idReceta, long idIngrediente);
 }

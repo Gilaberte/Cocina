@@ -24,25 +24,35 @@ public class NegocioImpl implements Negocio {
     @Override
     public List<Receta> getRecetas() {
 
-        List<Receta> recetas= daoReceta.getRecetas();
-        for (Receta receta: recetas) {
-            receta.setIngredientes(daoReceta.getIngredientesReceta(receta.getId()));
-        }
+        return daoReceta.getRecetas();
 
-        return recetas;
     }
 
     @Override
     public void addReceta(Receta receta) {
 
-        daoReceta.addReceta(receta);
+        //TODO DEBERIA BORRAR LOS INGREDIENTES ASOCIADOS Y VOLVERLOS A CREAR
+
+        if( receta.getId() == -1 ){
+
+            receta = daoReceta.addReceta(receta);
+        }else{
+
+            receta = daoReceta.updateReceta(receta);
+        }
+
         long idReceta = receta.getId();
         List<Ingrediente> ingredientes = receta.getIngredientes();
 
         for (Ingrediente ingrediente: ingredientes) {
 
             long idIngrediente = daoIngrediente.createIngrediente(ingrediente);
-            daoReceta.addIngredienteReceta(idReceta, idIngrediente);
+
+            if( !daoReceta.existIngredienteInReceta(idReceta, idIngrediente) ){
+
+                daoReceta.addIngredienteReceta(idReceta, idIngrediente);
+            }
+
         }
 
 
@@ -57,12 +67,14 @@ public class NegocioImpl implements Negocio {
 
     @Override
     public void removeReceta(Receta receta) {
+
+        //TODO TENGO QUE BORRAR LOS INGREDIENTES ASOCIADOS
         daoReceta.removeReceta(receta);
     }
 
     @Override
-    public void updateReceta(Receta receta, int position) {
-        daoReceta.updateReceta(receta, position);
+    public ArrayList<Ingrediente> getIngredientesToReceta(long id) {
+        return daoReceta.getIngredientesToReceta(id);
     }
 
 

@@ -96,11 +96,10 @@ public class AddRecetaActivity extends Activity {
         if( recetaSelected != null ){
 
             this.receta = (Receta) recetaSelected;
-            this.position = intent.getIntExtra("position", 0);
+            //TODO TENGO QUE OBTENER LOS INGREDIENTES
             setCurrentReceta();
 
         }else{
-
             //Creamos nuevo objeto Receta NO CAMBIAR DE SITIO PORQUE DA ERROR AL INTENTAR OBTENER LOS INGREDIENTES
             this.receta = new Receta();
         }
@@ -174,13 +173,10 @@ public class AddRecetaActivity extends Activity {
             receta.setNombre(etNombreReceta.getText().toString());
             receta.setDificultad(spinnerRecetaDificultad.getSelectedItem().toString());
             receta.setPreparacion(etRecetaPreparacion.getText().toString());
-            if( recetaSelected != null ){
 
-                context.getServicio().updateReceta(receta, this.position);
-            }else{
-                context.getServicio().addReceta(receta);
+            context.getServicio().addReceta(receta);
 
-            }
+
 
 
             Intent intent = new Intent();

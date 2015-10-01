@@ -90,7 +90,8 @@ public class MainActivity extends Activity {
 
             int position = ((AdapterView.AdapterContextMenuInfo) menuInfo).position;
 
-            Receta receta = context.getServicio().getRecetaById(position);
+            Receta receta = (Receta) recetaAdapter.getItem(position);
+
             menu.setHeaderTitle(receta.getNombre());
 
             getMenuInflater().inflate(R.menu.menu_receta_context, menu);
@@ -109,7 +110,6 @@ public class MainActivity extends Activity {
 
                 Receta recetaSelected = (Receta) recetaAdapter.getItem(position);
                 intent.putExtra("receta", recetaSelected);
-                intent.putExtra("position", position);
 
                 startActivityForResult(intent, REQUEST_CODE_ADD_RECETA);
 
@@ -117,9 +117,11 @@ public class MainActivity extends Activity {
                 return true;
             case R.id.action_receta_borrar:
 
-                Receta receta = context.getServicio().getRecetaById(position);
+                Receta receta = (Receta) recetaAdapter.getItem(position);
                 context.getServicio().removeReceta(receta);
 
+
+                recetaAdapter.addAll(context.getServicio().getRecetas());
                 recetaAdapter.notifyDataSetChanged();
 
                 return true;
