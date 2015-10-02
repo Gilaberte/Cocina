@@ -22,12 +22,17 @@ public class CocinaApplication extends Application {
     public void onCreate() {
         super.onCreate();
 
-        RecetaSqliteOpenHelper sqliteOpenHelper =
-                new RecetaSqliteOpenHelper(this, "Recetadb", null, 1);
+        RecetaSqliteOpenHelper sqliteOpenHelper = new RecetaSqliteOpenHelper(this, "Recetadb", null, 1);
 
         SQLiteDatabase db = sqliteOpenHelper.getWritableDatabase();
 
-        Negocio negocio = new NegocioImpl(new DaoRecetaImpl(this, db), new DaoIngredienteImpl(this, db));
+
+
+
+
+        DaoRecetaImpl daoReceta = new DaoRecetaImpl(this, db);
+        DaoIngredienteImpl daoIngrediente = new DaoIngredienteImpl(this, db);
+        Negocio negocio = new NegocioImpl(daoReceta, daoIngrediente);
         this.servicio = new ServicioImpl(negocio);
     }
 

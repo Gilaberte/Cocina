@@ -34,8 +34,7 @@ public class NegocioImpl implements Negocio {
 
 
 
-            receta = daoReceta.addReceta(receta);
-
+        receta = daoReceta.addReceta(receta);
 
         long idReceta = receta.getId();
         List<Ingrediente> ingredientes = receta.getIngredientes();
