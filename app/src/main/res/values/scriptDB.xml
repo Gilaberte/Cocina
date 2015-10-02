@@ -29,5 +29,15 @@
         <item>@string/createIngrediente</item>
         <item>@string/createRecetaIngrediente</item>
     </string-array>
+
+    <string name="dropTableReceta">DROP TABLE Receta</string>
+    <string name="dropTableIngrediente">DROP TABLE Ingrediente </string>
+    <string name="dropTableRecetaIngrediente">DROP TABLE RecetaIngrediente</string>
+
+    <string-array name="scriptBorrado">
+        <item>@string/dropTableReceta</item>
+        <item>@string/dropTableIngrediente</item>
+        <item>@string/dropTableRecetaIngrediente</item>
+    </string-array>
     
 </resources>

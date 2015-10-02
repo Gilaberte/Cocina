@@ -73,4 +73,16 @@ public class Receta implements Serializable {
     public Ingrediente getIngredienteById(int position) {
         return ingredientes.get(position);
     }
+
+    @Override
+    public String toString() {
+        final StringBuffer sb = new StringBuffer("Receta{");
+        sb.append("id=").append(id);
+        sb.append(", nombre='").append(nombre).append('\'');
+        sb.append(", ingredientes=").append(ingredientes);
+        sb.append(", dificultad='").append(dificultad).append('\'');
+        sb.append(", preparacion='").append(preparacion).append('\'');
+        sb.append('}');
+        return sb.toString();
+    }
 }

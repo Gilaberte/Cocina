@@ -18,4 +18,5 @@ public interface DaoIngrediente {
     ArrayList<Ingrediente> getIngredientesToReceta(long id);
 
 
+
 }

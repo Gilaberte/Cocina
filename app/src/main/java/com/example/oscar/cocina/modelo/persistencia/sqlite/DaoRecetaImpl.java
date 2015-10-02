@@ -3,6 +3,7 @@ package com.example.oscar.cocina.modelo.persistencia.sqlite;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import com.example.oscar.cocina.CocinaApplication;
 import com.example.oscar.cocina.modelo.entidades.Ingrediente;
@@ -72,13 +73,15 @@ public class DaoRecetaImpl implements DaoReceta {
     @Override
     public Receta addReceta(Receta receta){
 
+        Log.i(this.getClass().getName(), "Añadiendo la receta: " + receta);
+
         long idAutogenerado = db.insert(TABLA_RECETA, RECETA_CAMPO_ID, recetaToContentValues(receta));
+
         receta.setId(idAutogenerado);
+
+        Log.i(this.getClass().getName(), "Añadiendo la receta: " + receta);
+
         return receta;
-
-
-
-
     }
 
     @Override
@@ -116,7 +119,7 @@ public class DaoRecetaImpl implements DaoReceta {
     }
 
     @Override
-    public void removeIngredientes(Receta receta) {
+    public void removeIngredientesByRecetaId(Receta receta) {
 
         String whereClause = RECETA_INGREDIENTE_CAMPO_IDRECETA + " = ?";
         String[] whereArgs = {String.valueOf(receta.getId())};
@@ -124,13 +127,6 @@ public class DaoRecetaImpl implements DaoReceta {
         db.delete(TABLA_RECETA_INGREDIENTE, whereClause, whereArgs);
     }
 
-    @Override
-    public void removeIngredienteToReceta(long idReceta, long idIngrediente) {
-        String whereClause = RECETA_INGREDIENTE_CAMPO_IDRECETA + " = ? AND " + RECETA_INGREDIENTE_CAMPO_IDINGREDIENTE + " = ?" ;
-        String[] whereArgs = {String.valueOf(idReceta), String.valueOf(idIngrediente)};
-
-        db.delete(TABLA_RECETA_INGREDIENTE, whereClause, whereArgs);
-    }
 
 
     private ContentValues recetaToContentValues(Receta entidad) {

@@ -30,6 +30,11 @@ public class ServicioImpl implements Servicio {
     }
 
     @Override
+    public void updateReceta(Receta receta) {
+        negocio.updateReceta(receta);
+    }
+
+    @Override
     public Receta getRecetaById(int id) {
         return negocio.getRecetaById(id);
     }
@@ -44,10 +49,7 @@ public class ServicioImpl implements Servicio {
         return negocio.getIngredientesToReceta(id);
     }
 
-    @Override
-    public void removeIngrediente(long idReceta, long idIngrediente) {
-        negocio.removeIngrediente(idReceta, idIngrediente);
-    }
+
 
 
 }

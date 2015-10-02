@@ -17,11 +17,12 @@ public interface Servicio {
 
     public void addReceta(Receta receta);
 
+    public void updateReceta(Receta receta);
+
     public Receta getRecetaById(int id);
 
     public void removeReceta(Receta receta);
 
     public ArrayList<Ingrediente> getIngredientesToReceta(long id);
 
-    void removeIngrediente(long idReceta, long idIngrediente);
 }

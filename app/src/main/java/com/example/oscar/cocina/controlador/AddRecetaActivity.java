@@ -170,11 +170,21 @@ public class AddRecetaActivity extends Activity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.guardar_receta) {
 
+
+
             receta.setNombre(etNombreReceta.getText().toString());
             receta.setDificultad(spinnerRecetaDificultad.getSelectedItem().toString());
             receta.setPreparacion(etRecetaPreparacion.getText().toString());
 
-            context.getServicio().addReceta(receta);
+            if( this.receta.getId() == -1 ){
+
+                context.getServicio().addReceta(receta);
+            }else{
+                context.getServicio().updateReceta(receta);
+
+            }
+
+
 
 
 
@@ -222,11 +232,8 @@ public class AddRecetaActivity extends Activity {
                 return true;
             case R.id.action_ingrediente_borrar:
 
+                receta.removeIngrediente(position);
 
-                context.getServicio().removeIngrediente(receta.getId(), ingredienteAdapter.getItemId(position));
-
-
-                ingredienteAdapter.addAll(context.getServicio().getIngredientesToReceta(receta.getId()));
                 ingredienteAdapter.notifyDataSetChanged();
                 return true;
 

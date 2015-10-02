@@ -19,11 +19,13 @@ public interface Negocio {
 
     void addReceta(Receta receta);
 
+    void updateReceta(Receta receta);
+
     Receta getRecetaById(int id);
 
     void removeReceta(Receta receta);
 
     ArrayList<Ingrediente> getIngredientesToReceta(long id);
 
-    void removeIngrediente(long idReceta, long idIngrediente);
+
 }

@@ -28,7 +28,6 @@ public interface DaoReceta {
 
     void addIngredienteReceta(long idReceta, long idIngrediente);
 
-    void removeIngredientes(Receta receta);
+    void removeIngredientesByRecetaId(Receta receta);
 
-    void removeIngredienteToReceta(long idReceta, long idIngrediente);
 }
