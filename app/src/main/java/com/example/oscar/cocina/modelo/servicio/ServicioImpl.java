@@ -49,7 +49,12 @@ public class ServicioImpl implements Servicio {
         return negocio.getIngredientesToReceta(id);
     }
 
+    @Override
+    public ArrayList<Ingrediente> getIngredientes() {
 
+        return negocio.getIngredientes();
+
+    }
 
 
 }

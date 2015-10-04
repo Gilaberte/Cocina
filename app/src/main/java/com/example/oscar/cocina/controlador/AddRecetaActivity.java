@@ -3,12 +3,14 @@ package com.example.oscar.cocina.controlador;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
@@ -22,6 +24,7 @@ import com.example.oscar.cocina.modelo.entidades.Receta;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class AddRecetaActivity extends Activity {
 
@@ -32,7 +35,7 @@ public class AddRecetaActivity extends Activity {
 
     private EditText etRecetaPreparacion;
     private EditText etNombreReceta;
-    private EditText etNombreIngrediente;
+    private AutoCompleteTextView etNombreIngrediente;
     private ListView listadoRecetaIngredientes;
     private View btAddIngrediente;
 
@@ -44,10 +47,16 @@ public class AddRecetaActivity extends Activity {
     private ArrayAdapter dificultadRecetaAdapter;
     private ArrayAdapter medidasIngredienteAdapter;
     private ArrayAdapter cantidadesIngredienteAdapter;
+    private ArrayAdapter<String> nombreIngredienteAdapter;
 
     //Si es null estamos añadiendo, si no editando
     private Serializable recetaSelected;
     private int position;
+
+
+    private static final String[] INGREDIENTES = new String[] {
+            "Tomate", "Sal", "Lechuga", "azucar", "carne"
+    };
 
 
     @Override
@@ -64,6 +73,18 @@ public class AddRecetaActivity extends Activity {
         medidasIngredienteAdapter = new ArrayAdapter<String>(context, R.layout.simple_spinner_item, getResources().getStringArray(R.array.receta_medidas));
         cantidadesIngredienteAdapter = new ArrayAdapter<String>(context, R.layout.simple_spinner_item, getResources().getStringArray(R.array.receta_cantidades));
 
+        ArrayList<Ingrediente> ingredientesList = context.getServicio().getIngredientes();
+        String[] ingredientes = new String[ingredientesList.size()];
+        //ingredientes = ingredientesList.toArray(ingredientes);
+
+        int tmp = 0;
+        for(Ingrediente s : ingredientesList) {
+            ingredientes[tmp] = s.getNombre();
+            tmp += 1;
+        }
+
+        nombreIngredienteAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, ingredientes);
+
         //Referencia al listadoRecetas donde almacenaremos el listadoRecetas de ingredientes
         listadoRecetaIngredientes = (ListView) findViewById(R.id.lvRecetaIngredientes);
 
@@ -71,7 +92,8 @@ public class AddRecetaActivity extends Activity {
         etNombreReceta = (EditText) findViewById(R.id.etRecetaName);
 
         //Nombre Ingrediente
-        etNombreIngrediente = (EditText) findViewById(R.id.etIngredienteName);
+        etNombreIngrediente = (AutoCompleteTextView) findViewById(R.id.etIngredienteName);
+        etNombreIngrediente.setAdapter(nombreIngredienteAdapter);
 
         //Preparacion
         etRecetaPreparacion = (EditText) findViewById(R.id.et_receta_preparacion);

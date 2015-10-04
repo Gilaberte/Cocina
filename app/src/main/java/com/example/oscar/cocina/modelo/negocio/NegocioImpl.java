@@ -89,6 +89,10 @@ public class NegocioImpl implements Negocio {
         return daoIngrediente.getIngredientesToReceta(id);
     }
 
+    @Override
+    public ArrayList<Ingrediente> getIngredientes() {
+        return daoIngrediente.getIngredientes();
+    }
 
 
 }

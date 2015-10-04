@@ -13,13 +13,30 @@
         )
 
     </string>
+     <string name="createUnidad">CREATE TABLE Unidad (
+            id	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+            nombre TEXT NOT NULL
+        )
+
+    </string>
+    <string name="createMedida">CREATE TABLE Medida (
+            id	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+            nombre TEXT NOT NULL
+        )
+
+    </string>
 
     <string name="createRecetaIngrediente">CREATE TABLE RecetaIngrediente (
             idReceta	INTEGER NOT NULL,
             idIngrediente	INTEGER NOT NULL,
+            idUnidad	INTEGER NOT NULL,
+            idMedida	INTEGER NOT NULL,
             PRIMARY KEY(idReceta,idIngrediente),
             FOREIGN KEY(idReceta) REFERENCES Receta(id),
-            FOREIGN KEY(idIngrediente) REFERENCES Ingrediente(id)
+            FOREIGN KEY(idIngrediente) REFERENCES Ingrediente(id),
+            FOREIGN KEY(idUnidad) REFERENCES Unidad(id),
+            FOREIGN KEY(idMedida) REFERENCES Medida(id)
+
         )
 
     </string>
@@ -27,6 +44,8 @@
     <string-array name="scriptCreacion">
         <item>@string/createReceta</item>
         <item>@string/createIngrediente</item>
+        <item>@string/createUnidad</item>
+        <item>@string/createMedida</item>
         <item>@string/createRecetaIngrediente</item>
     </string-array>
 

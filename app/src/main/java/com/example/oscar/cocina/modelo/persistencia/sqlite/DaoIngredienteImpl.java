@@ -9,6 +9,8 @@ import com.example.oscar.cocina.CocinaApplication;
 import com.example.oscar.cocina.modelo.entidades.Ingrediente;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * Created by manana on 21/09/15.
@@ -92,6 +94,11 @@ public class DaoIngredienteImpl implements DaoIngrediente {
 
     }
 
+    @Override
+    public ArrayList<Ingrediente> getIngredientes() {
+        return queryWithWhere(null, null);
+    }
+
     private Ingrediente cursorToIngrediente(Cursor cursor) {
         Ingrediente ingrediente = new Ingrediente();
 
@@ -103,7 +110,25 @@ public class DaoIngredienteImpl implements DaoIngrediente {
 
     private ContentValues ingredienteToContentValues(Ingrediente entidad) {
         ContentValues ingredienteContentValues = new ContentValues();
-        ingredienteContentValues.put(INGREDIENTE_CAMPO_NOMBRE,entidad.getNombre());
+        ingredienteContentValues.put(INGREDIENTE_CAMPO_NOMBRE, entidad.getNombre());
         return ingredienteContentValues;
+    }
+
+    private ArrayList<Ingrediente> queryWithWhere(String whereClause, String[] whereArgs) {
+        ArrayList<Ingrediente> resultado = new ArrayList<>();
+
+        Cursor cursor = db.query(TABLA_INGREDIENTE, null, whereClause, whereArgs, null, null, null);
+
+        if(cursor.moveToFirst()) {
+            do {
+
+                Ingrediente ingrediente = cursorToIngrediente(cursor);
+
+                resultado.add(ingrediente);
+
+            } while (cursor.moveToNext());
+        }
+
+        return resultado;
     }
 }

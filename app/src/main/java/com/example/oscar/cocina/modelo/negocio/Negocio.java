@@ -28,4 +28,5 @@ public interface Negocio {
     ArrayList<Ingrediente> getIngredientesToReceta(long id);
 
 
+    ArrayList<Ingrediente> getIngredientes();
 }
