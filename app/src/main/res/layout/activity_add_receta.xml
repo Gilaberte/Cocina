@@ -4,45 +4,37 @@
     android:layout_height="fill_parent"
     tools:context="com.example.oscar.cocina.controlador.AddRecetaActivity"
     android:weightSum="1"
-    android:padding="10dp"
     android:orientation="vertical">
 
     <TextView
+        style="@style/tituloStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/receta_name"
-        android:gravity="center"/>
+        android:text="@string/receta_name"/>
 
     <EditText
+        style="@style/etRecetaNameStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/etRecetaName"/>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginBottom="20dp"
-        android:layout_marginTop="20dp">
-
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_weight="1"
-            android:gravity="center_vertical"
-            android:text="@string/tv_receta_dificultad"/>
-        <Spinner
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_weight="1"
-            android:id="@+id/spinnerAddRecetaDificultad"/>
-
-    </LinearLayout>
 
     <TextView
+        style="@style/tituloStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/tvIngredienteName"
-        android:gravity="center"/>
+        android:text="@string/tv_receta_dificultad"/>
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinnerAddRecetaDificultad"/>
+
+
+
+    <TextView
+        style="@style/tituloStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/tvIngredienteName"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -85,10 +77,10 @@
         android:id="@+id/lvRecetaIngredientes" />
 
     <TextView
+        style="@style/tituloStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/tvRecetaPreparacion"
-        android:gravity="center"/>
+        android:text="@string/tvRecetaPreparacion"/>
 
 
     <EditText

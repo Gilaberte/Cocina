@@ -1,11 +1,12 @@
 <resources>
-    <string name="app_name">Cocina</string>
+    <string name="app_name">A la carta</string>
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_secondary">SecondaryActivity</string>
+    <string name="tv_titulo_receta">Tus recetas</string>
     <string name="title_activity_activity_a">activity_a</string>
-    <string name="title_activity_add_receta">AddRecetaActivity</string>
+    <string name="title_activity_add_receta">Tu receta</string>
     <string name="receta_name">¿Que te apetece cocinar?</string>
 
     <string-array name="receta_dificultad">

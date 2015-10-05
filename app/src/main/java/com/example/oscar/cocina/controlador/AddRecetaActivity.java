@@ -14,6 +14,7 @@ import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.example.oscar.cocina.CocinaApplication;
 import com.example.oscar.cocina.vista.IngredienteAdapter;
@@ -193,27 +194,28 @@ public class AddRecetaActivity extends Activity {
         if (id == R.id.guardar_receta) {
 
 
+            if(etNombreReceta.getText().toString().trim().length() != 0 && etRecetaPreparacion.getText().toString().trim().length() != 0){
 
-            receta.setNombre(etNombreReceta.getText().toString());
-            receta.setDificultad(spinnerRecetaDificultad.getSelectedItem().toString());
-            receta.setPreparacion(etRecetaPreparacion.getText().toString());
+                receta.setNombre(etNombreReceta.getText().toString());
+                receta.setDificultad(spinnerRecetaDificultad.getSelectedItem().toString());
+                receta.setPreparacion(etRecetaPreparacion.getText().toString());
 
-            if( this.receta.getId() == -1 ){
+                if( this.receta.getId() == -1 ){
 
-                context.getServicio().addReceta(receta);
+                    context.getServicio().addReceta(receta);
+                }else{
+                    context.getServicio().updateReceta(receta);
+
+                }
+
+                Intent intent = new Intent();
+                setResult(RESULT_OK, intent);
+                finish();
+
             }else{
-                context.getServicio().updateReceta(receta);
-
+                Toast.makeText(context, "Debes rellenar todos los campos", Toast.LENGTH_LONG).show();
             }
 
-
-
-
-
-
-            Intent intent = new Intent();
-            setResult(RESULT_OK, intent);
-            finish();
         }
 
         return super.onOptionsItemSelected(item);
