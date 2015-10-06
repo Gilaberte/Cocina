@@ -41,15 +41,35 @@
 
     </string>
 
+    <string name="insertMedida1">INSERT INTO Medida (nombre) VALUES (\'KG\')</string>
+    <string name="insertMedida2">INSERT INTO Medida (nombre) VALUES (\'G\')</string>
+    <string name="insertMedida3">INSERT INTO Medida (nombre) VALUES (\'L\')</string>
+    <string name="insertMedida4">INSERT INTO Medida (nombre) VALUES (\'ML\')</string>
+    <string name="insertMedida5">INSERT INTO Medida (nombre) VALUES (\'CUCHARADAS\')</string>
+    <string name="insertMedida6">INSERT INTO Medida (nombre) VALUES (\'VASOS\') </string>
+    <string name="insertMedida7">INSERT INTO Medida (nombre) VALUES (\'PIZCAS\')</string>
+
+
+
+
     <string-array name="scriptCreacion">
         <item>@string/createReceta</item>
         <item>@string/createIngrediente</item>
         <item>@string/createUnidad</item>
         <item>@string/createMedida</item>
         <item>@string/createRecetaIngrediente</item>
+        <item>@string/insertMedida1</item>
+        <item>@string/insertMedida2</item>
+        <item>@string/insertMedida3</item>
+        <item>@string/insertMedida4</item>
+        <item>@string/insertMedida5</item>
+        <item>@string/insertMedida6</item>
+        <item>@string/insertMedida7</item>
+
+
     </string-array>
 
-    <string name="dropTableReceta">DROP TABLE Receta</string>
+    <!--<string name="dropTableReceta">DROP TABLE Receta</string>
     <string name="dropTableIngrediente">DROP TABLE Ingrediente </string>
     <string name="dropTableRecetaIngrediente">DROP TABLE RecetaIngrediente</string>
 
@@ -57,6 +77,6 @@
         <item>@string/dropTableReceta</item>
         <item>@string/dropTableIngrediente</item>
         <item>@string/dropTableRecetaIngrediente</item>
-    </string-array>
+    </string-array>-->
     
 </resources>

@@ -8,6 +8,7 @@ import android.util.Log;
 import com.example.oscar.cocina.CocinaApplication;
 import com.example.oscar.cocina.modelo.entidades.Ingrediente;
 import com.example.oscar.cocina.modelo.entidades.Receta;
+import com.example.oscar.cocina.modelo.persistencia.sqlite.util.GestorTransaccional;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -28,11 +29,13 @@ public class DaoRecetaImpl implements DaoReceta {
     public static final String RECETA_INGREDIENTE_CAMPO_IDRECETA = "idReceta";
     public static final String RECETA_INGREDIENTE_CAMPO_IDINGREDIENTE = "idIngrediente";
 
-
     private SQLiteDatabase db;
     private CocinaApplication context;
 
     private List<Receta> recetas = new ArrayList<>();
+
+
+
 
     public DaoRecetaImpl(CocinaApplication context, SQLiteDatabase db) {
 
@@ -40,10 +43,9 @@ public class DaoRecetaImpl implements DaoReceta {
         this.db = db;
 
 
-        //addReceta("Huevo frito", "Huevos y sal", "Facil", "poner en sarten");
-        //addReceta("Macarrones", "macarrones y tomate", "Facil", "Hervir y poner tomate");
-
     }
+
+
 
     @Override
     public List<Receta> getRecetas() {

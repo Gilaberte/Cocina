@@ -7,6 +7,7 @@ import android.util.Log;
 
 import com.example.oscar.cocina.CocinaApplication;
 import com.example.oscar.cocina.modelo.entidades.Ingrediente;
+import com.example.oscar.cocina.modelo.persistencia.sqlite.util.GestorTransaccional;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
