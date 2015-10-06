@@ -29,12 +29,11 @@
     <string name="createRecetaIngrediente">CREATE TABLE RecetaIngrediente (
             idReceta	INTEGER NOT NULL,
             idIngrediente	INTEGER NOT NULL,
-            idUnidad	INTEGER NOT NULL,
-            idMedida	INTEGER NOT NULL,
+            idMedida	INTEGER,
+            unidad	TEXT,
             PRIMARY KEY(idReceta,idIngrediente),
             FOREIGN KEY(idReceta) REFERENCES Receta(id),
             FOREIGN KEY(idIngrediente) REFERENCES Ingrediente(id),
-            FOREIGN KEY(idUnidad) REFERENCES Unidad(id),
             FOREIGN KEY(idMedida) REFERENCES Medida(id)
 
         )

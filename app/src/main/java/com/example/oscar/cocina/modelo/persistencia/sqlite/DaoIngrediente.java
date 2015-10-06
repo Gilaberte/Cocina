@@ -5,6 +5,7 @@ import android.widget.ArrayAdapter;
 import com.example.oscar.cocina.modelo.entidades.Ingrediente;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by manana on 21/09/15.
@@ -19,4 +20,5 @@ public interface DaoIngrediente {
 
 
     ArrayList<Ingrediente> getIngredientes();
+
 }

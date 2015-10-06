@@ -9,9 +9,7 @@ import android.widget.TextView;
 
 import com.example.oscar.cocina.R;
 import com.example.oscar.cocina.modelo.entidades.Ingrediente;
-import com.example.oscar.cocina.modelo.entidades.Receta;
 
-import java.util.Collection;
 import java.util.List;
 
 /**
@@ -54,18 +52,18 @@ public class IngredienteAdapter extends BaseAdapter {
             convertView = layoutInflater.inflate(layout, null);
 
             TextView tvNombreIngrediente = (TextView) convertView.findViewById(R.id.tvNombreIngrediente);
-            TextView tvCantidadIngrediente = (TextView) convertView.findViewById(R.id.tvCantidadIngrediente);
+            TextView tvUnidadIngrediente = (TextView) convertView.findViewById(R.id.tvUnidadIngrediente);
             TextView tvMedidaIngrediente = (TextView) convertView.findViewById(R.id.tvMedidaIngrediente);
 
 
-            IngredienteAdapterDecorator ingredienteAdapterDecorator = new IngredienteAdapterDecorator(tvNombreIngrediente, tvCantidadIngrediente, tvMedidaIngrediente);
+            IngredienteAdapterDecorator ingredienteAdapterDecorator = new IngredienteAdapterDecorator(tvNombreIngrediente, tvUnidadIngrediente, tvMedidaIngrediente);
             convertView.setTag(ingredienteAdapterDecorator);
         }
 
         Ingrediente item = (Ingrediente) getItem(position);
 
         ((IngredienteAdapterDecorator) convertView.getTag()).tvNombreIngrediente.setText(item.getNombre());
-        ((IngredienteAdapterDecorator) convertView.getTag()).tvCantidadIngrediente.setText(item.getCantidad());
+        ((IngredienteAdapterDecorator) convertView.getTag()).tvUnidadIngrediente.setText(item.getUnidad());
         ((IngredienteAdapterDecorator) convertView.getTag()).tvMedidaIngrediente.setText(item.getMedida());
 
 
@@ -82,12 +80,12 @@ public class IngredienteAdapter extends BaseAdapter {
 
 
         public TextView tvNombreIngrediente;
-        public TextView tvCantidadIngrediente;
+        public TextView tvUnidadIngrediente;
         public TextView tvMedidaIngrediente;
 
         public IngredienteAdapterDecorator(TextView tvNombreIngrediente, TextView tvCantidadIngrediente, TextView tvMedidaIngrediente) {
             this.tvNombreIngrediente = tvNombreIngrediente;
-            this.tvCantidadIngrediente = tvCantidadIngrediente;
+            this.tvUnidadIngrediente = tvCantidadIngrediente;
             this.tvMedidaIngrediente = tvMedidaIngrediente;
         }
     }

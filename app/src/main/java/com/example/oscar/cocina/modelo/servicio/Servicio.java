@@ -26,4 +26,6 @@ public interface Servicio {
     public ArrayList<Ingrediente> getIngredientesToReceta(long id);
 
     public ArrayList<Ingrediente> getIngredientes();
+
+    public List<String> getMedidas();
 }

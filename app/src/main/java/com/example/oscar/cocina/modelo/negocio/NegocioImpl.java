@@ -3,6 +3,7 @@ package com.example.oscar.cocina.modelo.negocio;
 import com.example.oscar.cocina.modelo.entidades.Ingrediente;
 import com.example.oscar.cocina.modelo.entidades.Receta;
 import com.example.oscar.cocina.modelo.persistencia.sqlite.DaoIngrediente;
+import com.example.oscar.cocina.modelo.persistencia.sqlite.DaoMedida;
 import com.example.oscar.cocina.modelo.persistencia.sqlite.DaoReceta;
 import com.example.oscar.cocina.modelo.persistencia.sqlite.util.GestorTransaccional;
 
@@ -14,14 +15,16 @@ import java.util.List;
  */
 public class NegocioImpl implements Negocio {
 
+    private DaoMedida daoMedida;
     private DaoReceta daoReceta;
     private DaoIngrediente daoIngrediente;
     private GestorTransaccional gestorTransaccional;
 
-    public NegocioImpl(DaoReceta daoReceta, DaoIngrediente daoIngrediente, GestorTransaccional gestorTransaccional) {
+    public NegocioImpl(DaoReceta daoReceta, DaoIngrediente daoIngrediente, DaoMedida daoMedida, GestorTransaccional gestorTransaccional) {
 
         this.daoReceta = daoReceta;
         this.daoIngrediente = daoIngrediente;
+        this.daoMedida = daoMedida;
         this.gestorTransaccional = gestorTransaccional;
     }
     @Override
@@ -47,7 +50,9 @@ public class NegocioImpl implements Negocio {
 
                 long idIngrediente = daoIngrediente.createIngrediente(ingrediente);
 
-                daoReceta.addIngredienteReceta(idReceta, idIngrediente);
+                long idMedida = daoMedida.getMedidaIdByName(ingrediente.getMedida().toString());
+
+                daoReceta.addIngredienteReceta(idReceta, idIngrediente, idMedida, ingrediente.getUnidad().toString());
 
 
             }
@@ -57,25 +62,10 @@ public class NegocioImpl implements Negocio {
             gestorTransaccional.endTransaccion();
         }
 
-
-
-
-
-
-
-
-
-
-
-
     }
 
     @Override
     public void updateReceta(Receta receta) {
-
-
-
-
 
         try {
             gestorTransaccional.beginTransaccion();
@@ -90,7 +80,9 @@ public class NegocioImpl implements Negocio {
 
                 long idIngrediente = daoIngrediente.createIngrediente(ingrediente);
 
-                daoReceta.addIngredienteReceta(idReceta, idIngrediente);
+                long idMedida = daoMedida.getMedidaIdByName(ingrediente.getMedida().toString());
+
+                daoReceta.addIngredienteReceta(idReceta, idIngrediente, idMedida, ingrediente.getUnidad().toString());
 
 
             }
@@ -98,13 +90,6 @@ public class NegocioImpl implements Negocio {
         } finally {
             gestorTransaccional.endTransaccion();
         }
-
-
-
-
-
-
-
 
     }
 
@@ -138,6 +123,11 @@ public class NegocioImpl implements Negocio {
     @Override
     public ArrayList<Ingrediente> getIngredientes() {
         return daoIngrediente.getIngredientes();
+    }
+
+    @Override
+    public List<String> getMedidas() {
+        return daoMedida.getMedidas();
     }
 
 

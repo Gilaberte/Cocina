@@ -56,5 +56,10 @@ public class ServicioImpl implements Servicio {
 
     }
 
+    @Override
+    public List<String> getMedidas() {
+        return negocio.getMedidas();
+    }
+
 
 }

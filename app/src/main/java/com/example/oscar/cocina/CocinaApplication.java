@@ -6,6 +6,7 @@ import android.database.sqlite.SQLiteDatabase;
 import com.example.oscar.cocina.modelo.negocio.Negocio;
 import com.example.oscar.cocina.modelo.negocio.NegocioImpl;
 import com.example.oscar.cocina.modelo.persistencia.sqlite.DaoIngredienteImpl;
+import com.example.oscar.cocina.modelo.persistencia.sqlite.DaoMedidaImpl;
 import com.example.oscar.cocina.modelo.persistencia.sqlite.DaoRecetaImpl;
 import com.example.oscar.cocina.modelo.persistencia.sqlite.util.GestorTransaccional;
 import com.example.oscar.cocina.modelo.persistencia.sqlite.util.GestorTransaccionalSqlite;
@@ -32,7 +33,9 @@ public class CocinaApplication extends Application {
 
         DaoRecetaImpl daoReceta = new DaoRecetaImpl(this, db);
         DaoIngredienteImpl daoIngrediente = new DaoIngredienteImpl(this, db);
-        Negocio negocio = new NegocioImpl(daoReceta, daoIngrediente, gestorTransaccional);
+        DaoMedidaImpl daoMedida = new DaoMedidaImpl(this, db);
+
+        Negocio negocio = new NegocioImpl(daoReceta, daoIngrediente, daoMedida, gestorTransaccional);
         this.servicio = new ServicioImpl(negocio);
     }
 

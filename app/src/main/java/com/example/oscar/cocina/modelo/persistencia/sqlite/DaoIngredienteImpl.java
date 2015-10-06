@@ -21,6 +21,8 @@ public class DaoIngredienteImpl implements DaoIngrediente {
     public static final String TABLA_INGREDIENTE = "Ingrediente";
     public static final String INGREDIENTE_CAMPO_ID = "id";
     public static final String INGREDIENTE_CAMPO_NOMBRE = "nombre";
+    public static final String INGREDIENTE_CAMPO_UNIDAD = "unidad";
+    public static final String MEDIDA_CAMPO_NOMBRE_ALIAS = "medida";
 
     private SQLiteDatabase db;
     private CocinaApplication context;
@@ -36,7 +38,7 @@ public class DaoIngredienteImpl implements DaoIngrediente {
     @Override
     public long createIngrediente(Ingrediente ingrediente) {
 
-        Ingrediente nuevoIngrediente = getIngredienteByName( ingrediente.getNombre().toString() );
+        Ingrediente nuevoIngrediente = getIngredienteByName(ingrediente.getNombre().toString());
 
         if( nuevoIngrediente == null ){
 
@@ -71,11 +73,13 @@ public class DaoIngredienteImpl implements DaoIngrediente {
 
         Log.i(this.getClass().getName(), "Consultando los ingredientes de la receta: " + id);
 
-        String sql = "SELECT Ingrediente.id, Ingrediente.nombre " +
-                "FROM Ingrediente " +
-                "INNER JOIN RecetaIngrediente " +
-                "ON Ingrediente.id = RecetaIngrediente.idIngrediente " +
-                "WHERE RecetaIngrediente.idReceta = ?";
+        String sql = "SELECT Ingrediente.id, Ingrediente.nombre, Medida.nombre as '"+ MEDIDA_CAMPO_NOMBRE_ALIAS +"', RecetaIngrediente.unidad " +
+                "FROM RecetaIngrediente " +
+                "INNER JOIN Ingrediente " +
+                "ON RecetaIngrediente.idIngrediente = Ingrediente.id " +
+                "INNER JOIN Medida " +
+                "ON RecetaIngrediente.idMedida = Medida.id " +
+                "WHERE RecetaIngrediente.idReceta = ? ";
 
         Log.i(this.getClass().getName(), "SQL: " + sql);
 
@@ -85,7 +89,11 @@ public class DaoIngredienteImpl implements DaoIngrediente {
 
         if(cursor.moveToFirst()) {
             do {
-                ingredientes.add(cursorToIngrediente(cursor));
+                Ingrediente ingrediente = cursorToIngrediente(cursor);
+                ingrediente.setMedida(cursor.getString(cursor.getColumnIndex(MEDIDA_CAMPO_NOMBRE_ALIAS)));
+                ingrediente.setUnidad(cursor.getString(cursor.getColumnIndex(INGREDIENTE_CAMPO_UNIDAD)));
+
+                ingredientes.add(ingrediente);
             } while (cursor.moveToNext());
         }
 
@@ -99,6 +107,8 @@ public class DaoIngredienteImpl implements DaoIngrediente {
     public ArrayList<Ingrediente> getIngredientes() {
         return queryWithWhere(null, null);
     }
+
+
 
     private Ingrediente cursorToIngrediente(Cursor cursor) {
         Ingrediente ingrediente = new Ingrediente();

@@ -3,7 +3,6 @@ package com.example.oscar.cocina.controlador;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -25,18 +24,17 @@ import com.example.oscar.cocina.modelo.entidades.Receta;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 public class AddRecetaActivity extends Activity {
 
     public static final String RESULTADO_ADD_RECETA = "resultadoAddReceta";
-    private Spinner spinnerAddIngredienteCantidades;
     private Spinner spinnerAddIngredienteMedidas;
     private Spinner spinnerRecetaDificultad;
 
     private EditText etRecetaPreparacion;
     private EditText etNombreReceta;
     private AutoCompleteTextView etNombreIngrediente;
+    private EditText etIngredienteUnidad;
     private ListView listadoRecetaIngredientes;
     private View btAddIngrediente;
 
@@ -47,17 +45,10 @@ public class AddRecetaActivity extends Activity {
     private IngredienteAdapter ingredienteAdapter;
     private ArrayAdapter dificultadRecetaAdapter;
     private ArrayAdapter medidasIngredienteAdapter;
-    private ArrayAdapter cantidadesIngredienteAdapter;
     private ArrayAdapter<String> nombreIngredienteAdapter;
 
     //Si es null estamos añadiendo, si no editando
     private Serializable recetaSelected;
-    private int position;
-
-
-    private static final String[] INGREDIENTES = new String[] {
-            "Tomate", "Sal", "Lechuga", "azucar", "carne"
-    };
 
 
     @Override
@@ -69,10 +60,10 @@ public class AddRecetaActivity extends Activity {
 
 
 
+
         //Iniciamos adapters
         dificultadRecetaAdapter = new ArrayAdapter<String>(context, R.layout.simple_spinner_item, getResources().getStringArray(R.array.receta_dificultad));
-        medidasIngredienteAdapter = new ArrayAdapter<String>(context, R.layout.simple_spinner_item, getResources().getStringArray(R.array.receta_medidas));
-        cantidadesIngredienteAdapter = new ArrayAdapter<String>(context, R.layout.simple_spinner_item, getResources().getStringArray(R.array.receta_cantidades));
+        medidasIngredienteAdapter = new ArrayAdapter<String>(context, R.layout.simple_spinner_item, context.getServicio().getMedidas());
 
         ArrayList<Ingrediente> ingredientesList = context.getServicio().getIngredientes();
         String[] ingredientes = new String[ingredientesList.size()];
@@ -96,6 +87,9 @@ public class AddRecetaActivity extends Activity {
         etNombreIngrediente = (AutoCompleteTextView) findViewById(R.id.etIngredienteName);
         etNombreIngrediente.setAdapter(nombreIngredienteAdapter);
 
+        //UnidadIngrediente
+        etIngredienteUnidad = (EditText) findViewById(R.id.etAddIngredienteUnidad);
+
         //Preparacion
         etRecetaPreparacion = (EditText) findViewById(R.id.et_receta_preparacion);
 
@@ -106,12 +100,6 @@ public class AddRecetaActivity extends Activity {
         //MEDIDAS INGREDIENTES
         spinnerAddIngredienteMedidas = (Spinner) findViewById(R.id.spinnerAddRecetaMedidas);
         spinnerAddIngredienteMedidas.setAdapter(medidasIngredienteAdapter);
-
-        //CANTIDADES INGREDIENTES
-        spinnerAddIngredienteCantidades = (Spinner) findViewById(R.id.spinnerAddRecetaCantidades);
-        spinnerAddIngredienteCantidades.setAdapter(cantidadesIngredienteAdapter);
-
-
 
         Intent intent = getIntent();
         recetaSelected = intent.getSerializableExtra("receta");
@@ -148,13 +136,13 @@ public class AddRecetaActivity extends Activity {
 
                 //Obtenemos datos del nuevo ingrediente
                 String etNombreIngredienteText = etNombreIngrediente.getText().toString();
-                String itemIngredienteCantidad = spinnerAddIngredienteCantidades.getSelectedItem().toString();
+                String etIngredienteUnidadText = etIngredienteUnidad.getText().toString();
                 String itemIngredienteMedida = spinnerAddIngredienteMedidas.getSelectedItem().toString();
 
                 //Guardamos el Ingrediente en un nuevo bojeto ingrediente
                 Ingrediente ingrediente = new Ingrediente();
                 ingrediente.setNombre(etNombreIngredienteText);
-                ingrediente.setCantidad(itemIngredienteCantidad);
+                ingrediente.setUnidad(etIngredienteUnidadText);
                 ingrediente.setMedida(itemIngredienteMedida);
 
                 //Añadimos ese nuevo objeto ingrediente a nuestro objeto receta.
@@ -164,7 +152,7 @@ public class AddRecetaActivity extends Activity {
                 ingredienteAdapter.notifyDataSetChanged();
 
                 etNombreIngrediente.setText("");
-                spinnerAddIngredienteCantidades.setSelection(0);
+                etIngredienteUnidad.setText("");
                 spinnerAddIngredienteMedidas.setSelection(0);
                 //Toast.makeText(context, itemIngredienteCantidad, Toast.LENGTH_LONG).show();
 

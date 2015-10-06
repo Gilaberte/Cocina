@@ -26,7 +26,7 @@ public interface DaoReceta {
 
     Receta updateReceta(Receta receta);
 
-    void addIngredienteReceta(long idReceta, long idIngrediente);
+    void addIngredienteReceta(long receta, long idReceta, long idIngrediente, String s);
 
     void removeIngredientesByRecetaId(Receta receta);
 

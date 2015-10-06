@@ -6,9 +6,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
 import com.example.oscar.cocina.CocinaApplication;
-import com.example.oscar.cocina.modelo.entidades.Ingrediente;
 import com.example.oscar.cocina.modelo.entidades.Receta;
-import com.example.oscar.cocina.modelo.persistencia.sqlite.util.GestorTransaccional;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -28,6 +26,8 @@ public class DaoRecetaImpl implements DaoReceta {
     public static final String TABLA_RECETA_INGREDIENTE = "RecetaIngrediente";
     public static final String RECETA_INGREDIENTE_CAMPO_IDRECETA = "idReceta";
     public static final String RECETA_INGREDIENTE_CAMPO_IDINGREDIENTE = "idIngrediente";
+    public static final String RECETA_INGREDIENTE_CAMPO_IDMEDIDA = "idMedida";
+    public static final String RECETA_INGREDIENTE_CAMPO_UNIDAD = "unidad";
 
     private SQLiteDatabase db;
     private CocinaApplication context;
@@ -108,11 +108,13 @@ public class DaoRecetaImpl implements DaoReceta {
     }
 
     @Override
-    public void addIngredienteReceta(long idReceta, long idIngrediente) {
+    public void addIngredienteReceta(long idReceta, long idIngrediente, long idMedida, String unidad) {
 
         ContentValues ingredienteContentValues = new ContentValues();
         ingredienteContentValues.put(RECETA_INGREDIENTE_CAMPO_IDRECETA, idReceta);
         ingredienteContentValues.put(RECETA_INGREDIENTE_CAMPO_IDINGREDIENTE, idIngrediente);
+        ingredienteContentValues.put(RECETA_INGREDIENTE_CAMPO_IDMEDIDA, idMedida);
+        ingredienteContentValues.put(RECETA_INGREDIENTE_CAMPO_UNIDAD, unidad);
 
         db.insert(TABLA_RECETA_INGREDIENTE, null, ingredienteContentValues);
 

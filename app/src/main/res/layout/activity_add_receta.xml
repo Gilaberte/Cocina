@@ -49,11 +49,12 @@
             android:id="@+id/etIngredienteName"
             android:hint="Sal..."/>
 
-        <Spinner
+        <EditText
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_weight="1"
-            android:id="@+id/spinnerAddRecetaCantidades"/>
+            android:digits="0123456789./"
+            android:id="@+id/etAddIngredienteUnidad"/>
 
         <Spinner
             android:layout_width="fill_parent"

@@ -29,4 +29,6 @@ public interface Negocio {
 
 
     ArrayList<Ingrediente> getIngredientes();
+
+    List<String> getMedidas();
 }

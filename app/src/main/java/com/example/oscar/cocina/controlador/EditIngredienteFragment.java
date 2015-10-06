@@ -72,7 +72,7 @@ public class EditIngredienteFragment extends DialogFragment {
                     public void onClick(DialogInterface dialog, int i) {
 
                         ingrediente.setNombre(etNombreIngrediente.getText().toString());
-                        ingrediente.setCantidad(spinnerAddIngredienteCantidades.getSelectedItem().toString());
+                        ingrediente.setUnidad(spinnerAddIngredienteCantidades.getSelectedItem().toString());
                         ingrediente.setMedida(spinnerAddIngredienteMedidas.getSelectedItem().toString());
                         ingredienteAdapter.notifyDataSetChanged();
                         dialog.dismiss();

@@ -10,7 +10,7 @@ public class Ingrediente implements Serializable{
     private long id;
     private String nombre;
     private String medida;
-    private String cantidad;
+    private String Unidad;
 
     public long getId() {
         return id;
@@ -36,11 +36,11 @@ public class Ingrediente implements Serializable{
         this.medida = medida;
     }
 
-    public String getCantidad() {
-        return cantidad;
+    public String getUnidad() {
+        return Unidad;
     }
 
-    public void setCantidad(String cantidad) {
-        this.cantidad = cantidad;
+    public void setUnidad(String unidad) {
+        this.Unidad = unidad;
     }
 }
