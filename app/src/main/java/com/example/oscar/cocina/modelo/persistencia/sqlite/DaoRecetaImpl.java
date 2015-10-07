@@ -64,8 +64,7 @@ public class DaoRecetaImpl implements DaoReceta {
         Cursor cursor = db.query(TABLA_RECETA, null, whereClause, whereArgs, null, null, null);
 
         if(cursor.moveToFirst()) {
-            Receta receta = cursorToReceta(cursor);
-            return  receta;
+            return cursorToReceta(cursor);
         }
 
         return null;

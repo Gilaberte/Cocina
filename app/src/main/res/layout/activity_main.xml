@@ -14,7 +14,6 @@
         android:layout_column="0" />
 
     <ListView
-        style="@style/listViewRecetasStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/lvRecetas"

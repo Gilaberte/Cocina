@@ -6,6 +6,7 @@
         <item name="android:textColor">@color/textColor</item>
         <item name="android:editTextStyle">@style/EditTextStyle</item>
         <item name="android:autoCompleteTextViewStyle">@style/AutocompleteStyle</item>
+       <!-- <item name="android:spinnerItemStyle">@style/SpinnerStyle</item>-->
     </style>
 
     <style name="ActionBarStyle" parent="android:Widget.Holo.ActionBar">
@@ -28,11 +29,19 @@
         <item name="android:strokeWidth">10</item>
         <item name="android:strokeColor">#000</item>
     </style>
-    <style name="listViewRecetasStyle" parent="android:Widget.Holo.ListView">
 
+<!--SPINNER START -->
+    <style name="SpinnerStyle" parent="android:Widget.Holo.TextView.SpinnerItem">
+        <item name="android:textAppearance">@style/TextAppearanceSpinnerItem</item>
 
     </style>
+    <style name="TextAppearanceSpinnerItem" parent="android:TextAppearance.Holo.Widget.TextView.SpinnerItem">
+        <item name="android:textColor">@color/textColorSpinner</item>
+    </style>
 
+    <!--SPINNER END -->
+
+    <!-- ESTILO LISTA RECETAS -->
     <style name="layoutRecetasListItemStyle" parent="android:Widget.Holo.GridView">
         <item name="android:background">@drawable/item_receta_style</item>
         <item name="android:paddingTop">10dp</item>
@@ -42,6 +51,18 @@
         <item name="android:gravity">center_vertical</item>
 
     </style>
+
+    <!-- ESTILO LISTA INGREDIENTES -->
+    <style name="layoutIngredientesListItemStyle" parent="android:Widget.Holo.GridView">
+        <item name="android:background">@drawable/item_ingrediente_style</item>
+        <item name="android:paddingTop">10dp</item>
+        <item name="android:paddingBottom">10dp</item>
+        <item name="android:paddingLeft">5dp</item>
+        <item name="android:paddingRight">5dp</item>
+        <item name="android:gravity">center_vertical</item>
+
+    </style>
+
 
     <style name="etRecetaNameStyle" parent="android:Widget.Holo.TextView">
         <item name="android:gravity">center_horizontal</item>

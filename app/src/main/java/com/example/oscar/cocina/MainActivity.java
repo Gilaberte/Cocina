@@ -13,7 +13,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.oscar.cocina.controlador.AddRecetaActivity;
-import com.example.oscar.cocina.controlador.EditRecetaActivity;
+import com.example.oscar.cocina.controlador.ViewRecetaActivity;
 import com.example.oscar.cocina.modelo.entidades.Receta;
 import com.example.oscar.cocina.modelo.servicio.Servicio;
 import com.example.oscar.cocina.vista.RecetaAdapter;
@@ -23,10 +23,10 @@ import java.util.List;
 
 public class MainActivity extends Activity {
 
+
     private CocinaApplication context;
 
     private static final int REQUEST_CODE_ADD_RECETA = 1;
-    private static final int REQUEST_CODE_EDIT_RECETA = 2;
     private ListView listadoRecetas;
     private RecetaAdapter recetaAdapter;
     private Button btCambiarActivity;
@@ -55,6 +55,22 @@ public class MainActivity extends Activity {
 
         //Registramos el listado de ignredientes para que aparezca el menu contextual
         registerForContextMenu(listadoRecetas);
+
+        //Si hacemos click sobre la receta la visualizamos
+        listadoRecetas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+
+                Intent intent = new Intent(MainActivity.this, ViewRecetaActivity.class);
+
+                Receta recetaSelected = (Receta) recetaAdapter.getItem(position);
+                intent.putExtra("receta", recetaSelected);
+
+                startActivity(intent);
+
+            }
+        });
 
     }
 

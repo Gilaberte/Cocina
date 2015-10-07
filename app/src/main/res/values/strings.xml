@@ -44,4 +44,5 @@
     <string name="tv_receta_dificultad">Nivel de dificultad</string>
     <string name="tvRecetaPreparacion">¿Como lo vas a hacer?</string>
     <string name="title_activity_edit_receta">EditRecetaActivity</string>
+    <string name="title_activity_view_receta">ViewRecetaActivity</string>
 </resources>

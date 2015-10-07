@@ -8,4 +8,5 @@
     <color name="textColorEditText">#000</color>
     <color name="textColorAutocomplete">#000</color>
     <color name="textColorSpinner">#000</color>
+    <color name="textColorTextviewListIngredientes">#2C75A8</color>
 </resources>

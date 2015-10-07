@@ -61,7 +61,6 @@ public class NegocioImpl implements Negocio {
         } finally {
             gestorTransaccional.endTransaccion();
         }
-
     }
 
     @Override
