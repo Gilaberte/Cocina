@@ -10,9 +10,12 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import com.example.oscar.cocina.CocinaApplication;
 import com.example.oscar.cocina.vista.IngredienteAdapter;
 import com.example.oscar.cocina.R;
 import com.example.oscar.cocina.modelo.entidades.Ingrediente;
+
+import java.util.List;
 
 /**
  * Created by manana on 24/09/15.
@@ -23,9 +26,8 @@ public class EditIngredienteFragment extends DialogFragment {
     private IngredienteAdapter ingredienteAdapter;
 
     private ArrayAdapter medidasIngredienteAdapter;
-    private ArrayAdapter cantidadesIngredienteAdapter;
 
-    private Spinner spinnerAddIngredienteCantidades;
+    private EditText etEditIngredienteUnidad;
     private Spinner spinnerAddIngredienteMedidas;
     private EditText etNombreIngrediente;
 
@@ -50,19 +52,21 @@ public class EditIngredienteFragment extends DialogFragment {
 
         builder.setView(view);
 
-        medidasIngredienteAdapter = new ArrayAdapter<String>(getActivity().getApplicationContext(), R.layout.simple_spinner_item, getResources().getStringArray(R.array.receta_medidas));
-        cantidadesIngredienteAdapter = new ArrayAdapter<String>(getActivity().getApplicationContext(), R.layout.simple_spinner_item, getResources().getStringArray(R.array.receta_cantidades));
-
+        List<String> medidasLista = ((CocinaApplication) getActivity().getApplicationContext()).getServicio().getMedidas();
+        medidasIngredienteAdapter = new ArrayAdapter<String>(getActivity().getApplicationContext(), R.layout.simple_spinner_item, medidasLista);
 
         spinnerAddIngredienteMedidas = (Spinner) view.findViewById(R.id.spinnerAddRecetaMedidasEdit);
         spinnerAddIngredienteMedidas.setAdapter(medidasIngredienteAdapter);
 
 
-        spinnerAddIngredienteCantidades = (Spinner) view.findViewById(R.id.spinnerAddRecetaCantidadesEdit);
-        spinnerAddIngredienteCantidades.setAdapter(cantidadesIngredienteAdapter);
-
+        etEditIngredienteUnidad = (EditText) view.findViewById(R.id.etEditIngredienteUnidad);
         etNombreIngrediente = (EditText) view.findViewById(R.id.etIngredienteNameEdit);
+
+        //Seteamos valores por defecto
         etNombreIngrediente.setText(ingrediente.getNombre());
+        etEditIngredienteUnidad.setText(ingrediente.getUnidad());
+        spinnerAddIngredienteMedidas.setSelection(medidasLista.indexOf(ingrediente.getMedida()));
+
 
 
         builder.setIcon(android.R.drawable.ic_dialog_info)
@@ -72,7 +76,7 @@ public class EditIngredienteFragment extends DialogFragment {
                     public void onClick(DialogInterface dialog, int i) {
 
                         ingrediente.setNombre(etNombreIngrediente.getText().toString());
-                        ingrediente.setUnidad(spinnerAddIngredienteCantidades.getSelectedItem().toString());
+                        ingrediente.setUnidad(etEditIngredienteUnidad.getText().toString());
                         ingrediente.setMedida(spinnerAddIngredienteMedidas.getSelectedItem().toString());
                         ingredienteAdapter.notifyDataSetChanged();
                         dialog.dismiss();

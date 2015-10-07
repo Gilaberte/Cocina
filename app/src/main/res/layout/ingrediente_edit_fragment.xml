@@ -17,11 +17,12 @@
             android:id="@+id/etIngredienteNameEdit"
             android:hint="Sal..."/>
 
-        <Spinner
+        <EditText
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_weight="1"
-            android:id="@+id/spinnerAddRecetaCantidadesEdit"/>
+            android:digits="0123456789./"
+            android:id="@+id/etEditIngredienteUnidad"/>
 
         <Spinner
             android:layout_width="fill_parent"

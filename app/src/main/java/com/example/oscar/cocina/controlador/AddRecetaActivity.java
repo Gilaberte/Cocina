@@ -3,6 +3,7 @@ package com.example.oscar.cocina.controlador;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -24,6 +25,7 @@ import com.example.oscar.cocina.modelo.entidades.Receta;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class AddRecetaActivity extends Activity {
 
@@ -117,8 +119,6 @@ public class AddRecetaActivity extends Activity {
         }
 
 
-
-
         //Obtenemos ingredientes y los listamos
         int layout = R.layout.ingredientes_list_item;
         ingredienteAdapter = new IngredienteAdapter(this.receta.getIngredientes(), context, layout);
@@ -139,22 +139,38 @@ public class AddRecetaActivity extends Activity {
                 String etIngredienteUnidadText = etIngredienteUnidad.getText().toString();
                 String itemIngredienteMedida = spinnerAddIngredienteMedidas.getSelectedItem().toString();
 
-                //Guardamos el Ingrediente en un nuevo bojeto ingrediente
-                Ingrediente ingrediente = new Ingrediente();
-                ingrediente.setNombre(etNombreIngredienteText);
-                ingrediente.setUnidad(etIngredienteUnidadText);
-                ingrediente.setMedida(itemIngredienteMedida);
+                Boolean ingredienteDuplicado = false;
+                for ( Ingrediente ingrediente: receta.getIngredientes() ) {
+                    if(ingrediente.getNombre().toString().equals(etNombreIngredienteText)){
+                        ingredienteDuplicado = true;
+                    }
+                }
 
-                //Añadimos ese nuevo objeto ingrediente a nuestro objeto receta.
-                AddRecetaActivity.this.receta.addIngrediente(ingrediente);
+                if(etNombreIngredienteText.length() == 0){
+                    Toast.makeText(context, "No puedes añadir ingredientes sin nombre", Toast.LENGTH_LONG).show();
 
-                //Notificamos al adapter que actualice su contenido en el listadoRecetas de ingredientes
-                ingredienteAdapter.notifyDataSetChanged();
+                }else if(ingredienteDuplicado){
 
-                etNombreIngrediente.setText("");
-                etIngredienteUnidad.setText("");
-                spinnerAddIngredienteMedidas.setSelection(0);
-                //Toast.makeText(context, itemIngredienteCantidad, Toast.LENGTH_LONG).show();
+                    Toast.makeText(context, "No puedes duplicar ingredientes", Toast.LENGTH_LONG).show();
+                }else{
+                    //Guardamos el Ingrediente en un nuevo objeto ingrediente
+                    Ingrediente ingrediente = new Ingrediente();
+                    ingrediente.setNombre(etNombreIngredienteText);
+                    ingrediente.setUnidad(etIngredienteUnidadText);
+                    ingrediente.setMedida(itemIngredienteMedida);
+
+                    //Añadimos ese nuevo objeto ingrediente a nuestro objeto receta.
+                    AddRecetaActivity.this.receta.addIngrediente(ingrediente);
+
+                    //Notificamos al adapter que actualice su contenido en el listadoRecetas de ingredientes
+                    ingredienteAdapter.notifyDataSetChanged();
+
+                    etNombreIngrediente.setText("");
+                    etIngredienteUnidad.setText("");
+                    spinnerAddIngredienteMedidas.setSelection(0);
+
+                }
+
 
 
             }
@@ -182,8 +198,17 @@ public class AddRecetaActivity extends Activity {
         if (id == R.id.guardar_receta) {
 
 
-            if(etNombreReceta.getText().toString().trim().length() != 0 && etRecetaPreparacion.getText().toString().trim().length() != 0){
 
+            if(etNombreReceta.getText().toString().trim().length() == 0) {
+
+                Toast.makeText(context, "Debes poner un nombre", Toast.LENGTH_LONG).show();
+
+
+            }else if(etRecetaPreparacion.getText().toString().trim().length() == 0){
+
+                Toast.makeText(context, "Debes poner la preparación", Toast.LENGTH_LONG).show();
+
+            }else{
                 receta.setNombre(etNombreReceta.getText().toString());
                 receta.setDificultad(spinnerRecetaDificultad.getSelectedItem().toString());
                 receta.setPreparacion(etRecetaPreparacion.getText().toString());
@@ -199,10 +224,9 @@ public class AddRecetaActivity extends Activity {
                 Intent intent = new Intent();
                 setResult(RESULT_OK, intent);
                 finish();
-
-            }else{
-                Toast.makeText(context, "Debes rellenar todos los campos", Toast.LENGTH_LONG).show();
             }
+
+
 
         }
 
