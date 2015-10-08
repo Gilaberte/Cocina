@@ -1,6 +1,19 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.example.oscar.cocina.controlador.ViewRecetaActivity">
-    <item android:id="@+id/action_settings" android:title="@string/action_settings"
-        android:orderInCategory="100" android:showAsAction="never" />
+
+
+    <item android:id="@+id/action_receta_borrar_view"
+        android:title="Borrar"
+        android:icon="@android:drawable/ic_menu_delete"
+        android:showAsAction="always"/>
+
+    <item android:id="@+id/action_receta_edicion_view"
+        android:title="Editar"
+        android:orderInCategory="100"
+        android:showAsAction="always"
+        android:icon="@android:drawable/ic_menu_edit"/>
+
+
+
 </menu>

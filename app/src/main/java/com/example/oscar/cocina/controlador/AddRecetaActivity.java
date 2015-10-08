@@ -223,6 +223,7 @@ public class AddRecetaActivity extends Activity {
                 }
 
                 Intent intent = new Intent();
+                intent.putExtra("receta", receta);
                 setResult(RESULT_OK, intent);
                 finish();
             }

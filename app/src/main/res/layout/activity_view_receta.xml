@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:layout_row="0"
         android:layout_column="0"
-        android:text="@string/receta_name"/>
+        android:text="@string/receta_name_view"/>
     <TextView
         android:id="@+id/ViewrecetaName"
         android:layout_width="match_parent"
@@ -38,7 +38,7 @@
         style="@style/tituloStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/tvIngredienteName"
+        android:text="@string/tvIngredienteNameView"
         android:layout_row="4"
         android:layout_column="0"/>
 
@@ -54,7 +54,7 @@
         style="@style/tituloStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/tvRecetaPreparacion"
+        android:text="@string/tvRecetaPreparacionView"
         android:layout_row="6"
         android:layout_column="0"/>
 

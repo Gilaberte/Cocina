@@ -10,6 +10,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.oscar.cocina.CocinaApplication;
+import com.example.oscar.cocina.MainActivity;
 import com.example.oscar.cocina.R;
 import com.example.oscar.cocina.modelo.entidades.Receta;
 import com.example.oscar.cocina.vista.IngredienteAdapter;
@@ -18,29 +19,37 @@ import java.io.Serializable;
 
 public class ViewRecetaActivity extends Activity {
 
+    private static final int REQUEST_CODE_EDIT_RECETA = 1 ;
     Receta receta;
+    CocinaApplication context;
+    IngredienteAdapter ingredienteAdapter;
+    TextView name;
+    TextView dificultad;
+    TextView preparacion;
+    ListView ingredientes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_receta);
 
-        CocinaApplication context = (CocinaApplication) getApplicationContext();
+        context = (CocinaApplication) getApplicationContext();
 
         Intent intent = getIntent();
         receta = (Receta) intent.getSerializableExtra("receta");
-        TextView name = (TextView) findViewById(R.id.ViewrecetaName);
-        TextView dificultad = (TextView) findViewById(R.id.ViewrecetaDificultad);
-        TextView preparacion = (TextView) findViewById(R.id.ViewrecetaPreparación);
-        ListView ingredientes = (ListView) findViewById(R.id.lvRecetaIngredientesView);
+        name = (TextView) findViewById(R.id.ViewrecetaName);
+        dificultad = (TextView) findViewById(R.id.ViewrecetaDificultad);
+        preparacion = (TextView) findViewById(R.id.ViewrecetaPreparación);
+        ingredientes = (ListView) findViewById(R.id.lvRecetaIngredientesView);
 
         name.setText(receta.getNombre());
         dificultad.setText(receta.getDificultad());
 
         int layout = R.layout.ingredientes_list_item;
-        IngredienteAdapter ingredienteAdapter = new IngredienteAdapter(context.getServicio().getIngredientesToReceta(receta.getId()), context, layout);
+        ingredienteAdapter = new IngredienteAdapter(context.getServicio().getIngredientesToReceta(receta.getId()), context, layout);
         ingredientes.setAdapter(ingredienteAdapter);
         preparacion.setText(receta.getPreparacion());
+
     }
 
     @Override
@@ -58,10 +67,47 @@ public class ViewRecetaActivity extends Activity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        if (id == R.id.action_receta_borrar_view) {
+
+
+            context.getServicio().removeReceta(receta);
+
+
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+
+
+        }else if( id == R.id.action_receta_edicion_view ){
+
+            Intent intent = new Intent(this, AddRecetaActivity.class);
+            intent.putExtra("receta", receta);
+
+            startActivityForResult(intent, REQUEST_CODE_EDIT_RECETA);
+
         }
 
+
         return super.onOptionsItemSelected(item);
+    }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == REQUEST_CODE_EDIT_RECETA) {
+
+
+            if (resultCode == RESULT_OK) {
+
+                receta = (Receta) data.getSerializableExtra("receta");
+                name.setText(receta.getNombre());
+                dificultad.setText(receta.getDificultad());
+                preparacion.setText(receta.getPreparacion());
+                ingredienteAdapter.addAll(context.getServicio().getIngredientesToReceta(receta.getId()));
+                ingredienteAdapter.notifyDataSetChanged();
+            }
+
+        }
     }
 }

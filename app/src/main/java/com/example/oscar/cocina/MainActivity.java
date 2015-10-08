@@ -122,7 +122,7 @@ public class MainActivity extends Activity {
         switch (item.getItemId()) {
             case R.id.action_receta_edicion:
 
-                Intent intent = new Intent(MainActivity.this, AddRecetaActivity.class);
+                Intent intent = new Intent(this, AddRecetaActivity.class);
 
                 Receta recetaSelected = (Receta) recetaAdapter.getItem(position);
                 intent.putExtra("receta", recetaSelected);

@@ -45,4 +45,7 @@
     <string name="tvRecetaPreparacion">¿Como lo vas a hacer?</string>
     <string name="title_activity_edit_receta">EditRecetaActivity</string>
     <string name="title_activity_view_receta">ViewRecetaActivity</string>
+    <string name="receta_name_view">Nombre de la receta</string>
+    <string name="tvIngredienteNameView">Ingredientes</string>
+    <string name="tvRecetaPreparacionView">Preparación</string>
 </resources>
