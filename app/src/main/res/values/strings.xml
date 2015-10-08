@@ -28,23 +28,13 @@
 
     </string-array>
 
-    <string-array name="receta_cantidades">
-        <item>1/4</item>
-        <item>1/3</item>
-        <item>1/2</item>
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-        <item>4</item>
-        <item>5</item>
 
-    </string-array>
     <string name="title_activity_add_ingrediente">AddIngredienteActivity</string>
     <string name="tvIngredienteName">¿Que ingredientes vas a usar?</string>
     <string name="tv_receta_dificultad">Nivel de dificultad</string>
     <string name="tvRecetaPreparacion">¿Como lo vas a hacer?</string>
     <string name="title_activity_edit_receta">EditRecetaActivity</string>
-    <string name="title_activity_view_receta">ViewRecetaActivity</string>
+    <string name="title_activity_view_receta">Visionado Receta</string>
     <string name="receta_name_view">Nombre de la receta</string>
     <string name="tvIngredienteNameView">Ingredientes</string>
     <string name="tvRecetaPreparacionView">Preparación</string>

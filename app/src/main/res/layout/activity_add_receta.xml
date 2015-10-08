@@ -22,6 +22,21 @@
         style="@style/tituloStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:text="Foto del plato"/>
+    <Button
+        android:id="@+id/btImageReceta"
+        android:text="Hacer foto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <ImageView
+        android:id="@+id/ivReceta"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        style="@style/tituloStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:text="@string/tv_receta_dificultad"/>
     <Spinner
         android:layout_width="match_parent"

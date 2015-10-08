@@ -2,7 +2,12 @@ package com.example.oscar.cocina.controlador;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.Menu;
@@ -11,7 +16,9 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -22,6 +29,7 @@ import com.example.oscar.cocina.R;
 import com.example.oscar.cocina.modelo.entidades.Ingrediente;
 import com.example.oscar.cocina.modelo.entidades.Receta;
 
+import java.io.File;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -30,6 +38,7 @@ import java.util.List;
 public class AddRecetaActivity extends Activity {
 
     public static final String RESULTADO_ADD_RECETA = "resultadoAddReceta";
+    private static final int REQUEST_CODE_IMAGE = 1;
     private Spinner spinnerAddIngredienteMedidas;
     private Spinner spinnerRecetaDificultad;
 
@@ -39,6 +48,8 @@ public class AddRecetaActivity extends Activity {
     private EditText etIngredienteUnidad;
     private ListView listadoRecetaIngredientes;
     private View btAddIngrediente;
+    private View btImageReceta;
+    private ImageView ivImagenReceta;
 
     private CocinaApplication context;
     private Receta receta;
@@ -51,6 +62,9 @@ public class AddRecetaActivity extends Activity {
 
     //Si es null estamos añadiendo, si no editando
     private Serializable recetaSelected;
+
+    //URI RECETA IMAGEN
+    private Uri uri;
 
 
     @Override
@@ -89,6 +103,10 @@ public class AddRecetaActivity extends Activity {
         etNombreIngrediente = (AutoCompleteTextView) findViewById(R.id.etIngredienteName);
         etNombreIngrediente.setAdapter(nombreIngredienteAdapter);
 
+        //ImageView imagen
+        ivImagenReceta = (ImageView) findViewById(R.id.ivReceta);
+        //Button add imagen
+        btImageReceta = findViewById(R.id.btImageReceta);
 
         //UnidadIngrediente
         etIngredienteUnidad = (EditText) findViewById(R.id.etAddIngredienteUnidad);
@@ -177,6 +195,31 @@ public class AddRecetaActivity extends Activity {
             }
         });
 
+
+        //Al hacer click en el boton de hacer foto
+
+
+        btImageReceta.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+
+
+                File directory = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
+
+                String path = etNombreReceta.getText().toString() + ".jpg";
+
+                File file = new File(directory, path);
+
+                uri = Uri.fromFile(file);
+
+                intent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
+
+                startActivityForResult(intent, REQUEST_CODE_IMAGE);
+
+            }
+        });
 
 
     }
@@ -295,5 +338,23 @@ public class AddRecetaActivity extends Activity {
 
 
 
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        switch (requestCode){
+
+            case REQUEST_CODE_IMAGE:
+
+
+                Bitmap bitmap = BitmapFactory.decodeFile(uri.getPath());
+
+                ivImagenReceta.setImageBitmap(bitmap);
+
+                break;
+
+        }
     }
 }
