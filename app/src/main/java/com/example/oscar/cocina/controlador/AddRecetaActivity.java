@@ -89,6 +89,7 @@ public class AddRecetaActivity extends Activity {
         etNombreIngrediente = (AutoCompleteTextView) findViewById(R.id.etIngredienteName);
         etNombreIngrediente.setAdapter(nombreIngredienteAdapter);
 
+
         //UnidadIngrediente
         etIngredienteUnidad = (EditText) findViewById(R.id.etAddIngredienteUnidad);
 
