@@ -353,6 +353,7 @@ public class AddRecetaActivity extends Activity {
 
                 ivImagenReceta.setImageBitmap(bitmap);
 
+
                 break;
 
         }
