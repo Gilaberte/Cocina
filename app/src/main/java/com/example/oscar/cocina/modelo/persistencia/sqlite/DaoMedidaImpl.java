@@ -30,7 +30,7 @@ public class DaoMedidaImpl implements DaoMedida {
 
     @Override
     public List<String> getMedidas() {
-            List<String> resultado = new LinkedList<>();
+            List<String> resultado = new LinkedList();
 
             Cursor cursor = db.query(TABLA_MEDIDA, null, null, null, null, null, null);
 

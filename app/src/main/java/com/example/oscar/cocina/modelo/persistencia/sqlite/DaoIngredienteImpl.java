@@ -85,7 +85,7 @@ public class DaoIngredienteImpl implements DaoIngrediente {
 
         Cursor cursor = db.rawQuery(sql, new String[]{String.valueOf(id)});
 
-        ArrayList<Ingrediente> ingredientes = new ArrayList<>();
+        ArrayList<Ingrediente> ingredientes = new ArrayList();
 
         if(cursor.moveToFirst()) {
             do {
@@ -126,7 +126,7 @@ public class DaoIngredienteImpl implements DaoIngrediente {
     }
 
     private ArrayList<Ingrediente> queryWithWhere(String whereClause, String[] whereArgs) {
-        ArrayList<Ingrediente> resultado = new ArrayList<>();
+        ArrayList<Ingrediente> resultado = new ArrayList();
 
         Cursor cursor = db.query(TABLA_INGREDIENTE, null, whereClause, whereArgs, null, null, null);
 

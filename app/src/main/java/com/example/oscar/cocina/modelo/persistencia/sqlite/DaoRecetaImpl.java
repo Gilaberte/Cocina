@@ -32,7 +32,7 @@ public class DaoRecetaImpl implements DaoReceta {
     private SQLiteDatabase db;
     private CocinaApplication context;
 
-    private List<Receta> recetas = new ArrayList<>();
+    private List<Receta> recetas = new ArrayList();
 
 
 
@@ -152,7 +152,7 @@ public class DaoRecetaImpl implements DaoReceta {
     }
 
     private List<Receta> queryWithWhere(String whereClause, String[] whereArgs) {
-        LinkedList<Receta> resultado = new LinkedList<>();
+        LinkedList<Receta> resultado = new LinkedList();
 
         Cursor cursor = db.query(TABLA_RECETA, null, whereClause, whereArgs, null, null, null);
 
