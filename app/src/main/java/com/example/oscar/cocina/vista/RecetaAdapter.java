@@ -1,16 +1,23 @@
 package com.example.oscar.cocina.vista;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
+import android.os.Environment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.oscar.cocina.R;
 import com.example.oscar.cocina.modelo.entidades.Receta;
 
+import java.io.File;
+import java.net.URI;
 import java.util.List;
 
 /**
@@ -55,12 +62,28 @@ public class RecetaAdapter extends BaseAdapter {
             TextView tvNombre = (TextView) convertView.findViewById(R.id.tvNombre);
             TextView tvDificultad = (TextView) convertView.findViewById(R.id.tvDificultad);
 
-            RecetaAdapterDecorator recetaAdapterDecorator = new RecetaAdapterDecorator(tvNombre, tvDificultad);
+            ImageView ivImagenReceta = (ImageView)convertView.findViewById(R.id.imagenReceta);
+            RecetaAdapterDecorator recetaAdapterDecorator = new RecetaAdapterDecorator(tvNombre, tvDificultad, ivImagenReceta);
 
             convertView.setTag(recetaAdapterDecorator);
         }
 
+
+
+
         Receta item = (Receta) getItem(position);
+
+        File directory = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
+
+        String path = item.getNombre() + ".jpg";
+
+        File file = new File(directory, path);
+
+        Uri uri = Uri.fromFile(file);
+
+        Bitmap bitmap = BitmapFactory.decodeFile(uri.getPath());
+
+        ((RecetaAdapterDecorator) convertView.getTag()).ivImagenReceta.setImageBitmap(bitmap);
 
         ((RecetaAdapterDecorator) convertView.getTag()).tvNombre.setText(item.getNombre());
         //((RecetaAdapterDecorator) convertView.getTag()).tvIngredientes.setText(item.getIngredientes());
@@ -80,13 +103,13 @@ public class RecetaAdapter extends BaseAdapter {
 
 
         public TextView tvNombre;
-        public TextView tvIngredientes;
         public TextView tvDificultad;
-        public TextView tvPreparacion;
+        public ImageView ivImagenReceta;
 
-        public RecetaAdapterDecorator(TextView tvNombre, TextView tvDificultad) {
+        public RecetaAdapterDecorator(TextView tvNombre, TextView tvDificultad, ImageView imagenReceta) {
             this.tvNombre = tvNombre;
             this.tvDificultad = tvDificultad;
+            this.ivImagenReceta = imagenReceta;
         }
     }
 }
