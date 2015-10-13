@@ -7,7 +7,7 @@
     <string name="tv_titulo_receta">Tus recetas</string>
     <string name="title_activity_activity_a">activity_a</string>
     <string name="title_activity_add_receta">Tu receta</string>
-    <string name="receta_name">¿Que te apetece cocinar?</string>
+    <string name="receta_name">¿Qué te apetece cocinar?</string>
 
     <string-array name="receta_dificultad">
 
@@ -30,9 +30,9 @@
 
 
     <string name="title_activity_add_ingrediente">AddIngredienteActivity</string>
-    <string name="tvIngredienteName">¿Que ingredientes vas a usar?</string>
+    <string name="tvIngredienteName">¿Qué ingredientes vas a usar?</string>
     <string name="tv_receta_dificultad">Nivel de dificultad</string>
-    <string name="tvRecetaPreparacion">¿Como lo vas a hacer?</string>
+    <string name="tvRecetaPreparacion">¿Cómo lo vas a hacer?</string>
     <string name="title_activity_edit_receta">EditRecetaActivity</string>
     <string name="title_activity_view_receta">Visionado Receta</string>
     <string name="receta_name_view">Nombre de la receta</string>
